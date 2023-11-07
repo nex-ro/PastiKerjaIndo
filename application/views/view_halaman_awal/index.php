@@ -99,7 +99,7 @@
 						<div class="active-popular-post-carusel">
 							<div class="single-popular-post d-flex flex-row">
 								<div class="thumb">
-									<img class="img-fluid" src="img/p1.png" alt="">
+									<img class="img-fluid" src="<?=base_url('assets')?>/img/p1.png" alt="">
 									<a class="btns text-uppercase" href="#">view job post</a>
 								</div>
 								<div class="details">
@@ -112,7 +112,7 @@
 							</div>	
 							<div class="single-popular-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/p2.png" alt="">
+									<img src="<?=base_url('assets')?>/img/p2.png" alt="">
 									<a class="btns text-uppercase" href="#">view job post</a>
 								</div>
 								<div class="details">
@@ -125,7 +125,7 @@
 							</div>
 							<div class="single-popular-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/p1.png" alt="">
+									<img src="<?=base_url('assets')?>/img/p1.png" alt="">
 									<a class="btns text-uppercase" href="#">view job post</a>
 								</div>
 								<div class="details">
@@ -138,7 +138,7 @@
 							</div>	
 							<div class="single-popular-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/p2.png" alt="">
+									<img src="<?=base_url('assets')?>/img/p2.png" alt="">
 									<a class="btns text-uppercase" href="#">view job post</a>
 								</div>
 								<div class="details">
@@ -151,7 +151,7 @@
 							</div>	
 							<div class="single-popular-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/p1.png" alt="">
+									<img src="<?=base_url('assets')?>/img/p1.png" alt="">
 									<a class="btns text-uppercase" href="#">view job post</a>
 								</div>
 								<div class="details">
@@ -164,7 +164,7 @@
 							</div>	
 							<div class="single-popular-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/p2.png" alt="">
+									<img src="<?=base_url('assets')?>/img/p2.png" alt="">
 									<a class="btns text-uppercase" href="#">view job post</a>
 								</div>
 								<div class="details">
@@ -196,7 +196,7 @@
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
 								<a href="category.html">
-									<img src="img/o1.png" alt="">
+									<img src="<?=base_url('assets')?>/img/o1.png" alt="">
 								</a>
 								<p>Accounting</p>
 							</div>
@@ -204,7 +204,7 @@
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
 								<a href="category.html">
-									<img src="img/o2.png" alt="">
+									<img src="<?=base_url('assets')?>/img/o2.png" alt="">
 								</a>
 								<p>Development</p>
 							</div>
@@ -212,7 +212,7 @@
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
 								<a href="category.html">
-									<img src="img/o3.png" alt="">
+									<img src="<?=base_url('assets')?>/img/o3.png" alt="">
 								</a>
 								<p>Technology</p>
 							</div>
@@ -220,7 +220,7 @@
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
 								<a href="category.html">
-									<img src="img/o4.png" alt="">
+									<img src="<?=base_url('assets')?>/img/o4.png" alt="">
 								</a>
 								<p>Media & News</p>
 							</div>
@@ -228,7 +228,7 @@
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
 								<a href="category.html">
-									<img src="img/o5.png" alt="">
+									<img src="<?=base_url('assets')?>/img/o5.png" alt="">
 								</a>
 								<p>Medical</p>
 							</div>
@@ -236,7 +236,7 @@
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
 								<a href="category.html">
-									<img src="img/o6.png" alt="">
+									<img src="<?=base_url('assets')?>/img/o6.png" alt="">
 								</a>
 								<p>Goverment</p>
 							</div>			
@@ -259,7 +259,7 @@
 							</ul>
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/post.png" alt="">
+									<img src="<?=base_url('assets')?>/img/post.png" alt="">
 									<ul class="tags">
 										<li>
 											<a href="#">Art</a>
@@ -293,7 +293,7 @@
 							</div>
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/post.png" alt="">
+									<img src="<?=base_url('assets')?>/img/post.png" alt="">
 									<ul class="tags">
 										<li>
 											<a href="#">Art</a>
@@ -327,7 +327,7 @@
 							</div>
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/post.png" alt="">
+									<img src="<?=base_url('assets')?>/img/post.png" alt="">
 									<ul class="tags">
 										<li>
 											<a href="#">Art</a>
@@ -361,7 +361,7 @@
 							</div>		
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/post.png" alt="">
+									<img src="<?=base_url('assets')?>/img/post.png" alt="">
 									<ul class="tags">
 										<li>
 											<a href="#">Art</a>
@@ -395,7 +395,7 @@
 							</div>
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/post.png" alt="">
+									<img src="<?=base_url('assets')?>/img/post.png" alt="">
 									<ul class="tags">
 										<li>
 											<a href="#">Art</a>
@@ -429,7 +429,7 @@
 							</div>
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/post.png" alt="">
+									<img src="<?=base_url('assets')?>/img/post.png" alt="">
 									<ul class="tags">
 										<li>
 											<a href="#">Art</a>
@@ -463,7 +463,7 @@
 							</div>															
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/post.png" alt="">
+									<img src="<?=base_url('assets')?>/img/post.png" alt="">
 									<ul class="tags">
 										<li>
 											<a href="#">Art</a>
