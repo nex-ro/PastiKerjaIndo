@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require APPPATH . 'libraries/RestController.php';
 require APPPATH . 'libraries/Format.php';
 use chriskacerguis\RestServer\RestController;
-
 class Auth extends RestController
 {
     
@@ -16,14 +15,15 @@ class Auth extends RestController
 
   public function index_get()
   {
+    $this->load->view('layout/header_auth');
     $this->load->view('auth/login');
+    $this->load->view('layout/footer_auth');
   }
   public function register_get()
   {
-    $this->load->view('auth/register');
+    $this->load->view('layout/header_auth');
+    $this->load->view('auth/register');   
+    $this->load->view('layout/footer_auth');
+
   }
 }
-
-
-/* End of file Halawal.php */
-/* Location: ./application/controllers/Halawal.php */
