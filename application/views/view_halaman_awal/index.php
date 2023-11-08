@@ -37,7 +37,7 @@
 											</select>
 										</div>										
 									</div>
-									<div class="col-lg-2 form-cols">
+									<div class="col-lg-2 form-cols ">
 									    <button type="button" class="btn btn-info">
 									      <span class="lnr lnr-magnifier"></span> Search
 									    </button>
