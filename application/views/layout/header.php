@@ -14,8 +14,7 @@
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
-		<title>Job Listing</title>
-
+		<title>Pasti Kerja Indonesia</title>
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
 			<!--
 			CSS
@@ -29,9 +28,7 @@
 			<link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.css'); ?>">
 			<link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
 		</head>
-		
 		<body>
-
 			  <header id="header" id="home">
 			    <div class="container">
 			    	<div class="row align-items-center justify-content-between d-flex">
@@ -40,21 +37,13 @@
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
-				          <li class="menu-active"><a href="index.html">Home</a></li>
-				          <li><a href="about-us.html">Job Search</a></li>
-				          <li><a href="category.html">Company</a></li>
-				          <li><a href="price.html">News</a></li>
-				          <li><a href="blog-home.html">Expert Class</a></li>
-				          <li><a href="contact.html">About us</a></li>
-				          <li class="menu-has-children"><img src="<?=base_url('assets/img/pp.png')?>" style="width: 30px; border-radius: 50%;margin: auto;" alt="">
-				            <ul>
-								<li><a href="elements.html">Profil</a></li>
-								<li><a href="<?= site_url('login') ;?>">Login</a></li>
-								<!-- <li><a href="single.html">single</a></li> -->
-				            </ul>
-				          </li>
-				          
-				          <!-- <li><a class="ticker-btn" >Login</a></li>				          				           -->
+				          <li class="menu-active"><a href="<?=base_url()?>">Home</a></li>
+				          <li><a href="<?=base_url('index.php/job')?>">Job Search</a></li>
+				          <li><a href="<?=base_url('index.php/home/company')?>">Company</a></li>
+				          <li><a href="<?=base_url('index.php/home/news')?>" >News</a></li>
+				          <li><a href="<?=base_url('index.php/home/class')?>">Expert Class</a></li>
+				          <li><a href="<?=base_url('index.php/home/about')?>">About us</a></li>
+				          <li><a class="ticker-btn" href="<?= site_url('login') ;?>">Login</a></li>				          				          
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
 			    	</div>
