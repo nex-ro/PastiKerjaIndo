@@ -1,96 +1,61 @@
+<body class="bg-gradient-primary">
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                <a href="<?=site_url('')?>">
+                                <img src="<?=base_url('assets')?>/img/exit.png" alt="" style="position: absolute; top:10px;right :20px; width: 50px; opacity: 0.8;">
+                            </a>
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form class="user">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                        </a>
+                                        <hr>
+                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="<?=site_url('auth/Auth/register')?>">Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <body>
-    <div class="container" id="container">
-      <div class="form-container sign-up-container">
-        <form action="#">
-          <h1 id="vit">Pasti Kerja Indonesia</h1>
+            </div>
 
-          <input type="text" placeholder="Name" id="name" />
-          <input type="email" placeholder="Email" id="mail" />
-          <input type="password" placeholder="Password" id="pass" />
-          <button>Sign Up</button>
-          <br /><br /><br /><br />
-
-          <div class="social-container">
-            <a href="https:www.facebook.com" class="social" id="fb">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https:www.instagram.com" class="social" id="ins">
-              <i class="fab fa-instagram"> </i>
-            </a>
-            <a href="https://www.gmail.com" class="social" id="gm">
-              <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://www.twitter.com" class="social" id="tw">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </div>
-        </form>
-      </div>
-      <div class="form-container sign-in-container">
-        <form action="#">
-          <h1>Sign In</h1>
-
-          <input type="email" placeholder="Email" id="mail" />
-          <input type="password" placeholder="Password" id="pass" />
-          <button>Log In</button>
-          <br /><br /><br /><br /><br /><br />
-
-          <div class="social-container">
-            <a href="https:www.facebook.com" class="social" id="fb">
-              <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https:www.instagram.com" class="social" id="ins">
-              <i class="fab fa-instagram"> </i>
-            </a>
-            <a href="https://www.gmail.com" class="social" id="gm">
-              <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://www.twitter.com" class="social" id="tw">
-              <i class="fab fa-twitter"></i>
-              
-              <a href="<?= site_url('awal') ;?>" class="social" id="tw">
-              <i >TOMBOL BALEK AWAL</i>
-            </a>
-          </div>
-        </form>
-      </div>
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="overlay-panel overlay-left">
-            <h1>welcome</h1>
-            <p>
-              Wherever the art of Medicine is loved, there is also a love of
-              Humanity.
-            </p>
-            <br />
-            <p style="color: rgb(0, 68, 255)">Already have an account?</p>
-            <button class="press" id="signIn">Sign In</button>
-          </div>
-          <div class="overlay-panel overlay-right">
-            <h1>Pasti Kerja Indoenesia</h1>
-            <p>Passion for excellence. Compassion for people.</p>
-            <br />
-            <p style="color: rgb(0, 68, 255)">Don't have an account?</p>
-            <button class="press" id="signUp" style="color: rgb(57, 49, 5)">
-              Sign Up
-            </button>
-          </div>
         </div>
-      </div>
+
     </div>
-    <script type="text/javascript">
-      const signUpButton = document.getElementById("signUp");
-      const signInButton = document.getElementById("signIn");
-      const container = document.getElementById("container");
-
-      signUpButton.addEventListener("click", () => {
-        container.classList.add("right-panel-active");
-      });
-
-      signInButton.addEventListener("click", () => {
-        container.classList.remove("right-panel-active");
-      });
-    </script>
-  </body>
-</html>

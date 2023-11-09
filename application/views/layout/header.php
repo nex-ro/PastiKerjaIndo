@@ -41,20 +41,20 @@
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
 				          <li class="menu-active"><a href="index.html">Home</a></li>
-				          <li><a href="about-us.html">About Us</a></li>
-				          <li><a href="category.html">Category</a></li>
-				          <li><a href="price.html">Price</a></li>
-				          <li><a href="blog-home.html">Blog</a></li>
-				          <li><a href="contact.html">Contact</a></li>
-				          <li class="menu-has-children"><a href="">Pages</a>
+				          <li><a href="about-us.html">Job Search</a></li>
+				          <li><a href="category.html">Company</a></li>
+				          <li><a href="price.html">News</a></li>
+				          <li><a href="blog-home.html">Expert Class</a></li>
+				          <li><a href="contact.html">About us</a></li>
+				          <li class="menu-has-children"><img src="<?=base_url('assets/img/pp.png')?>" style="width: 30px; border-radius: 50%;margin: auto;" alt="">
 				            <ul>
-								<li><a href="elements.html">elements</a></li>
-								<li><a href="search.html">search</a></li>
-								<li><a href="single.html">single</a></li>
+								<li><a href="elements.html">Profil</a></li>
+								<li><a href="<?= site_url('login') ;?>">Login</a></li>
+								<!-- <li><a href="single.html">single</a></li> -->
 				            </ul>
 				          </li>
 				          
-				          <li><a class="ticker-btn" href="<?= site_url('login') ;?>">Login</a></li>				          				          
+				          <!-- <li><a class="ticker-btn" >Login</a></li>				          				           -->
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
 			    	</div>

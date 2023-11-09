@@ -50,11 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['halawal'] = 'auth/awal_controller/index';
-$route['default_controller'] = 'halawal ';
+$route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-
-
-$route['awal'] = 'auth/awal_controller/index';
-$route['login'] = 'auth/awal_controller/login';
-
+$route['login'] = 'auth/Auth/index';
