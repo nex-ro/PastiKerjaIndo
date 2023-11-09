@@ -11,7 +11,6 @@ class Auth extends RestController
     parent::__construct();
     $this->load->model('User_model','user');
     $this->load->model('Exp_model','exp');
-    $this->load->model('goggle_login_model');
   }
 
   public function index_get()
@@ -26,4 +25,5 @@ class Auth extends RestController
     $this->load->view('auth/register');   
     $this->load->view('layout/footer_auth');
   }
+  
 }
