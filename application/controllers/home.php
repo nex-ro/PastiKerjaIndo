@@ -20,7 +20,7 @@ class home extends RestController {
 	public function company_get()
 	{
 		$this->load->view('layout/header');
-
+		$this->load->view('view_halaman_awal/company');
 		$this->load->view('layout/footer');
 	}
 	public function news_get()
