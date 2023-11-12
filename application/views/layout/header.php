@@ -43,7 +43,11 @@
 				          <li><a href="<?=base_url('index.php/home/news')?>" >News</a></li>
 				          <li><a href="<?=base_url('index.php/home/class')?>">Expert Class</a></li>
 				          <li><a href="<?=base_url('index.php/home/about')?>">About us</a></li>
-				          <li><a class="ticker-btn" href="<?= site_url('login') ;?>">Login</a></li>				          				          
+						  <?php if($this->session->userdata('email')) { ?>
+        <li><a href="<?=site_url('auth/Auth/logout')?>">Logout</a></li>
+    <?php } else { ?>
+							  <li><a class="ticker-btn" href="<?= site_url('login') ;?>">Login</a></li>		
+							  <?php }?>		          				          
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
 			    	</div>

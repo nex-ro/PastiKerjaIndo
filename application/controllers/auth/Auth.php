@@ -12,9 +12,9 @@ class Auth extends RestController
   }
   function index_get()
     {
-        if($this->session->userdata('email')){
-            // redirect('Home');
-        }
+        // if($this->session->userdata('email')){
+        //     redirect('Home');
+        // }
         $this->form_validation->set_rules('email','Email','trim|required|valid_email',[
             'valid_email' => 'Email Not Valid',
             'required' => 'Email Must not be blank']);
@@ -33,7 +33,7 @@ class Auth extends RestController
         if($this->session->userdata('email')){
             redirect('home');
         }
-        $this->form_validation->set_rules('name','Nama','required|trim',[
+        $this->form_validation->set_rules('nama','Nama','required|trim',[
           'required'=> 'Please enter Your first Name',
         ]);
         $this->form_validation->set_rules('noHP','noHP','required|trim',[
@@ -54,40 +54,52 @@ class Auth extends RestController
             $this->load->view('layout/footer_auth');
         } else {
             $data = [
-                'nama' => htmlspecialchars($this->input->post('name', true)),
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'noHp' => htmlspecialchars($this->input->post('noHP', true)),
-                'password' => password_hash($this->input->post('pass'), PASSWORD_DEFAULT),
-                'profilePicture' => '',
+                'pass' => password_hash($this->input->post('pass'), PASSWORD_DEFAULT),
+                'profilePicture' => 'default.jpg',
                 'role' => "Worker",
                 'jenis_kelamin' => htmlspecialchars($this->input->post('gender', true))
             ];
-            $this->userrole->insert($data);
+            $this->user->insert($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun terdaftar, Silahkan Login!</div>');
-            redirect('Auth');        
+            redirect('login');        
         }
     }
   public function cek_login()
     {
         $email = $this->input->post('email');
         $password = $this->input->post('pass');
-        // $user = $this->db->get_where('user', ['email'=>$email])->row_array();
-        // if ($user) {
-        //     if (password_verify($password, $user['password'])) {
-        //         $data = [
-        //             'email' => $user['email'],
-        //             'nama' => $user['nama'],
-        //             'role' => $user['role'],
-        //             'id' => $user['id'],
-        //         ];
-        //         $this->session->set_userdata($data);
-        //     } else {
-        //         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong Password!</div>');
-        //         redirect('Auth');
-        //     }
-        // } else {
-        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Email Not Found </div>');
-        //     redirect("Auth");
-        // } (Activate if there a Database)
+        if($email == "ADMIN@ADMIN.com" && $password == "ADMINPKI"){
+            redirect("Admin");
+        }
+        $user = $this->db->get_where('user', ['email'=>$email])->row_array();
+        if ($user) {
+            if (password_verify($password, $user['pass'])) {
+                $data = [
+                    'email' => $user['email'],
+                    'nama' => $user['nama'],
+                    'role' => $user['role'],
+                    'id' => $user['id'],
+                ];
+                $this->session->set_userdata($data);
+                redirect('Home');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong Password!</div>');
+                redirect('login');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Email Not Found </div>');
+            redirect("login");
+        }
+    }
+    public function logout(){
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role');
+        $this->session->unset_userdata('nama');
+        $this->session->unset_userdata('id');
+        $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Log out Success</div>');
+        redirect('login');
     }
 }
