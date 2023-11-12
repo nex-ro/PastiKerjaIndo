@@ -14,9 +14,9 @@ class Auth extends RestController
   }
   function index_get()
     {
-        if($this->session->userdata('email')){
-            redirect('Home');
-        }
+        // if($this->session->userdata('email')){
+        //     redirect('Home');
+        // }
         $this->form_validation->set_rules('email','Email','trim|required|valid_email',[
             'valid_email' => 'Email Not Valid',
             'required' => 'Email Must not be blank']);
@@ -73,7 +73,7 @@ class Auth extends RestController
     {
         $email = $this->input->post('email');
         $password = $this->input->post('pass');
-        if($email == "ADMIN" && $password == "ADMINPKI"){
+        if($email == "ADMIN@ADMIN.com" && $password == "ADMINPKI"){
             redirect("Admin");
         }
         $user = $this->db->get_where('user', ['email'=>$email])->row_array();
@@ -95,5 +95,13 @@ class Auth extends RestController
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Email Not Found </div>');
             redirect("login");
         }
+    }
+    public function logout(){
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role');
+        $this->session->unset_userdata('nama');
+        $this->session->unset_userdata('id');
+        $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Log out Success</div>');
+        redirect('login');
     }
 }
