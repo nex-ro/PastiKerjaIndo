@@ -8,7 +8,7 @@ class Auth extends RestController
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('Exp_model','exp');
+    $this->load->model('User_model','user');
   }
   function index_get()
     {
@@ -99,7 +99,7 @@ class Auth extends RestController
             redirect("login");
         }
     }
-    public function logout(){
+    public function logout_get(){
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role');
         $this->session->unset_userdata('nama');
