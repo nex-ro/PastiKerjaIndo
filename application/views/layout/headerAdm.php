@@ -8,10 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="img/fav.png">
-
+    <link rel="shortcut icon" href="<?=base_url('assets/img/')?>icon.png" style="border-radius: 50%;">
     <title>Pasti Kerja Indonesia</title>
-
     <!-- Custom fonts for this template-->
     <link href="<?=base_url('assets/login')?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

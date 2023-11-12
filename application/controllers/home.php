@@ -30,6 +30,13 @@ class home extends RestController {
 		$this->load->view('view_halaman_awal/news');
 		$this->load->view('layout/footer');
 	}
+	public function newsOne_get()
+	{
+		// $this->load->view('welcome_message');
+		$this->load->view('layout/header');
+		$this->load->view('view_halaman_awal/news_one');
+		$this->load->view('layout/footer');
+	}
 	public function newsDetail_get()
 	{
 		// $this->load->view('welcome_message');

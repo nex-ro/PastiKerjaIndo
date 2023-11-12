@@ -114,7 +114,7 @@
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-70 col-lg-8">
 							<div class="title text-center">
-								<h1 class="mb-10">Experienced Mentor Team</h1>
+								<h1 class="mb-10">The Creator</h1>
 								<p>Who are in extremely love with eco friendly system.</p>
 							</div>
 						</div>
@@ -130,7 +130,7 @@
 						        </div>
 						    </div>
 						    <div class="meta-text mt-30 text-center">
-							    <h4>Ethel Davis</h4>
+							    <h4>M.Fadel Hizkil</h4>
 							    <p>Managing Director (Sales)</p>									    	
 						    </div>
 						</div>
@@ -144,7 +144,7 @@
 						        </div>
 						    </div>
 						    <div class="meta-text mt-30 text-center">
-							    <h4>Rodney Cooper</h4>
+							    <h4>Deri</h4>
 							    <p>Creative Art Director (Project)</p>			    	
 						    </div>
 						</div>	
@@ -158,7 +158,7 @@
 						        </div>
 						    </div>
 						    <div class="meta-text mt-30 text-center">
-							    <h4>Dora Walker</h4>
+							    <h4>Charles W</h4>
 							    <p>Senior Core Developer</p>			    	
 						    </div>
 						</div>	
@@ -172,10 +172,10 @@
 						        </div>
 						    </div>
 						    <div class="meta-text mt-30 text-center">
-							    <h4>Lena Keller</h4>
-							    <p>Creative Content Developer</p>			    	
+							    <h4>Dia</h4>
+							    <p>yang dineraka</p>			    	
 						    </div>
-						</div>																									
+						</div>																				
 				
 					</div>
 				</div>	

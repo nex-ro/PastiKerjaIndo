@@ -15,6 +15,8 @@
 		<meta charset="UTF-8">
 		<!-- Site Title -->
 		<title>Pasti Kerja Indonesia</title>
+		<link rel="shortcut icon" href="<?=base_url('assets/img/')?>icon.png" style="border-radius: 50%;">
+
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
 			<!--
 			CSS

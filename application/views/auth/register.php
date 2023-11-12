@@ -32,13 +32,15 @@
                                         id="exampleInputEmail" placeholder="Email Address" value="<?= set_value('email'); ?>">
                                         <?= form_error('email','<small class = "text-danger pl-3">','</small>');?>
                                 </div>
-                                <div class="col-sm-6">
-                                        <select class="form-control" id="gender" name="gender">
+                                <div class="form-group">
+                                <select class="form-control" id="gender" name="gender">
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                             <option value="other">Other</option>
-                                        </select>
-                                    </div>
+                                        </select>                              
+                                </div>
+
+                                        
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" name="pass" class="form-control form-control-user"
