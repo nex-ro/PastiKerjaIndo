@@ -17,17 +17,17 @@
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
                                     <?= $this->session->flashdata('message');?>
-                                    <form class="user">
+                                    <form action="<?= site_url('auth/Auth') ?>" method="POST">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address..." value="<?= set_value('email'); ?>">
-                                                <span class="form-error"><?= form_error('email'); ?></span>
+                                                <?= form_error('email','<small class = "text-danger pl-3">','</small>');?>
                                         </div>
                                         <div class="form-group">
-                                            <input type="pass" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password" value="<?= set_value('password'); ?>">
-                                                <span class="form-error"><?= form_error('password'); ?></span>
+                                            <input type="password" name="pass" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Password" value="<?= set_value('pass'); ?>">
+                                                <?= form_error('pass','<small class = "text-danger pl-3">','</small>');?>
                                               </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -36,13 +36,13 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+</button>
                                         <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                        <button class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
+</button>
                                     </form>
                                     <hr>
                                     <div class="text-center">

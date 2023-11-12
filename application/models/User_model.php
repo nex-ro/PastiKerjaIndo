@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
@@ -16,7 +16,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 
-class User_model extends CI_Model {
+class User_model extends CI_Model
+{
+  public $table = 'user';
 
   // ------------------------------------------------------------------------
 
@@ -29,11 +31,22 @@ class User_model extends CI_Model {
 
 
   // ------------------------------------------------------------------------
-  public function index()
+  public function update($where, $data)
   {
-    // 
+    $this->db->update($this->table, $data, $where);
+    return $this->db->affected_rows();
   }
-
+  public function insert($data)
+  {
+    $this->db->insert($this->table, $data);
+    return $this->db->insert_id();
+  }
+  public function delete($id)
+  {
+    $this->db->where($this->id, $id);
+    $this->db->delete($this->table);
+    return $this->db->affected_rows();
+  }
   // ------------------------------------------------------------------------
 
 }
