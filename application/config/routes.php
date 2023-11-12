@@ -55,3 +55,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'auth/Auth/index';
 $route['job'] = 'home/job';
+$route['logout'] = 'Auth/auth/logout';
+$route['Admin'] = 'admin/admin';

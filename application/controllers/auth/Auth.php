@@ -72,6 +72,11 @@ class Auth extends RestController
         $email = $this->input->post('email');
         $password = $this->input->post('pass');
         if($email == "ADMIN@ADMIN.com" && $password == "ADMINPKI"){
+            // redirect("Admin");
+            $data = [
+                'email' => $email
+            ];
+            $this->session->set_userdata($data);
             redirect("Admin");
         }
         $user = $this->db->get_where('user', ['email'=>$email])->row_array();
