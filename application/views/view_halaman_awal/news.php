@@ -5,9 +5,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								Blog Posts				
+								NEWS				
 							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="blog-home.html"> Blog Posts</a></p>
+							<p class="text-white link-nav"><a href="<?=site_url()?>">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="<?=site_url('home/news')?>">News</a></p>
 						</div>											
 					</div>
 				</div>

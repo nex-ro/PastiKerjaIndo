@@ -5,11 +5,9 @@ require APPPATH . 'libraries/Format.php';
 use chriskacerguis\RestServer\RestController;
 class Auth extends RestController
 {
-    
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('User_model','user');
     $this->load->model('Exp_model','exp');
   }
   function index_get()
