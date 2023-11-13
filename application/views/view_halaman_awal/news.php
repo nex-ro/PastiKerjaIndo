@@ -26,7 +26,7 @@
 									<li><a href="#">Technology, </a></li>
 									<li><a href="#">Fashion</a></li>
 								</ul>
-								<a href="blog-single.html">
+								<a href="<?=site_url('home/newsOne')?>">
 									<h1>
 										Cartridge Is Better Than Ever
 										A Discount Toner
