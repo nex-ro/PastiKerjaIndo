@@ -162,20 +162,7 @@
 							    <p>Senior Core Developer</p>			    	
 						    </div>
 						</div>	
-						<div class="col-md-3 single-team">
-						    <div class="thumb">
-						        <img class="img-fluid" src="<?=base_url('assets')?>/img/pages/t4.jpg" alt="">
-						        <div class="align-items-center justify-content-center d-flex">
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-									<a href="#"><i class="fa fa-linkedin"></i></a>
-						        </div>
-						    </div>
-						    <div class="meta-text mt-30 text-center">
-							    <h4>Dia</h4>
-							    <p>yang dineraka</p>			    	
-						    </div>
-						</div>																				
+																						
 				
 					</div>
 				</div>	
