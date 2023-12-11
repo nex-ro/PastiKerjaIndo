@@ -12,9 +12,62 @@ class Auth extends RestController
   }
   function index_get()
     {
-        // if($this->session->userdata('email')){
-        //     redirect('Home');
-        // }
+        include_once APPPATH . "libraries/vendor/autoload.php";
+
+        $google_client = new Google_Client();
+
+        $google_client->setClientId('223694650381-5m3v5m0kcp81nsuln02kljp0sfvknp45.apps.googleusercontent.com'); //Define your ClientID
+
+        $google_client->setClientSecret('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'); //Define your Client Secret Key
+
+        $google_client->setRedirectUri('http://localhost/pasti_kerja_indonesia/'); //Define your Redirect Uri
+
+        $google_client->addScope('email');
+
+        $google_client->addScope('profile');
+
+        if (isset($_GET["code"])) {
+            $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+
+            if (!isset($token["error"])) {
+                $google_client->setAccessToken($token['access_token']);
+
+                $this->session->set_userdata('access_token', $token['access_token']);
+
+                $google_service = new Google_Service_Oauth2($google_client);
+
+                $data = $google_service->userinfo->get();
+
+                $current_datetime = date('Y-m-d H:i:s');
+                if ($this->user_model->Is_already_register($data['id'])) {
+                    //update data
+                    $user_data = array(
+                        'first_name' => $data['given_name'],
+                        'last_name'  => $data['family_name'],
+                        'email_address' => $data['email'],
+                        'profile_picture' => $data['picture'],
+                        'updated_at' => $current_datetime
+                    );
+                    $this->user_model->Update_user_data($user_data, $data['id']);
+                } else {
+                    //insert data
+                    $user_data = array(
+                        'login_oauth_uid' => $data['id'],
+                        'first_name'  => $data['given_name'],
+                        'last_name'   => $data['family_name'],
+                        'email_address'  => $data['email'],
+                        'profile_picture' => $data['picture'],
+                        'created_at'  => $current_datetime
+                    );
+                    $this->user_model->Insert_user_data($user_data);
+                }
+                $this->session->set_userdata('user_data', $user_data);
+            }
+        }
+        $login_button = '<a href="' . $google_client->createAuthUrl() . '"> <divgi class="btn btn-google btn-user btn-block">
+        <i class="fab fa-google fa-fw"></i> Login with Google
+    </divgi></a>';
+        $data['login_button'] = $login_button;
         $this->form_validation->set_rules('email','Email','trim|required|valid_email',[
             'valid_email' => 'Email Not Valid',
             'required' => 'Email Must not be blank']);
@@ -22,7 +75,7 @@ class Auth extends RestController
             ['required' => 'Password must not be blank']);
         if($this->form_validation->run() == false){
             $this->load->view('layout/header_auth');
-            $this->load->view('auth/login');
+            $this->load->view('auth/login',$data);
             $this->load->view('layout/footer_auth');
         } else {
             $this -> cek_login();
@@ -107,4 +160,5 @@ class Auth extends RestController
         $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Log out Success</div>');
         redirect('login');
     }
+    
 }
