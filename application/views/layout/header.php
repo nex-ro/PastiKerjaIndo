@@ -44,6 +44,7 @@
 				          <li><a href="<?=base_url('index.php/home/company')?>">Company</a></li>
 				          <li><a href="<?=base_url('index.php/home/news')?>" >News</a></li>
 				          <li><a href="<?=base_url('index.php/home/about')?>">About us</a></li>
+						  <li><a href="<?=base_url('index.php/home/buatlowongan')?>">Buat Lowongan</a></li>
 						  <?php if($this->session->userdata('email')) { ?>
         <li><a href="<?=site_url('auth/Auth/logout')?>">Logout</a></li>
     <?php } else { ?>
