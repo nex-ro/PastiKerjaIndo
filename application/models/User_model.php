@@ -41,6 +41,11 @@ class User_model extends CI_Model
     $this->db->insert($this->table, $data);
     return $this->db->insert_id();
   }
+  public function insert_global($where,$data)
+  {
+    $this->db->insert($where, $data);
+    return $this->db->insert_id();
+  }
   public function delete($id)
   {
     $this->db->where($this->id, $id);
