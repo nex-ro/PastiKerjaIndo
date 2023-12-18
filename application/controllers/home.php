@@ -11,9 +11,10 @@ class home extends RestController {
   }
 	public function index_get()
 	{
+		$data['lowongan'] = $this->user->selectAll('lowongan');
 		// $this->load->view('welcome_message');
 		$this->load->view('layout/header');
-		$this->load->view('view_halaman_awal/index');
+		$this->load->view('view_halaman_awal/index',$data);
 		$this->load->view('layout/footer');
 	}
 	public function job_get()

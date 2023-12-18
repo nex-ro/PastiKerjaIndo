@@ -27,6 +27,27 @@ class User_model extends CI_Model
     parent::__construct();
   }
 
+  public function selectAll($table){
+    $query = $this->db->get($table);
+        
+    if ($query->num_rows() > 0) {
+        return $query->result(); 
+    } else {
+        return array(); 
+    }  
+  }
+
+  public function selectOne($table,$column){
+    $this->db->select($column);
+    $this->db->order_by($column, 'ASC');
+    $query = $this->db->get($table);
+        
+    if ($query->num_rows() > 0) {
+        return $query->result(); 
+    } else {
+        return array(); 
+    }  
+  }
   // ------------------------------------------------------------------------
 
 
@@ -76,6 +97,9 @@ class User_model extends CI_Model
   function Insert_user_data($data)
   {
    $this->db->insert('chat_user', $data);
+  }
+  function search_lowongan($table, $data){
+
   }
 }
 
