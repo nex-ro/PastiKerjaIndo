@@ -81,6 +81,7 @@ class Auth extends RestController
             $this -> cek_login();
         }
     }
+    
   function register_get()
     {
         if($this->session->userdata('email')){

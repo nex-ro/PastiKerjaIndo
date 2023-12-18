@@ -57,3 +57,4 @@ $route['login'] = 'auth/Auth/index';
 $route['job'] = 'home/job';
 $route['logout'] = 'Auth/auth/logout';
 $route['Admin'] = 'admin/admin';
+
