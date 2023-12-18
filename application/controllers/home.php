@@ -19,8 +19,16 @@ class home extends RestController {
 	}
 	public function job_get()
 	{
+		
 		$this->load->view('layout/header');
 		$this->load->view('view_halaman_awal/job');
+		$this->load->view('layout/footer');
+	}
+	public function searchjob_get()
+	{
+		$data['search'] = $this->user->search_lowongan('lowongan',$this->input->post('cari', true),$this->input->post('lokasi', true),$this->input->post('kategori', true));
+		$this->load->view('layout/header');
+		$this->load->view('view_halaman_awal/search_job',$data);
 		$this->load->view('layout/footer');
 	}
 	public function company_get()
@@ -57,6 +65,7 @@ class home extends RestController {
 		$this->load->view('view_halaman_awal/about');
 		$this->load->view('layout/footer');
 	}
+	
 	function buatlowongan_get()
     {
         if(!$this->session->userdata('email')){
@@ -92,4 +101,5 @@ class home extends RestController {
             redirect('home');        
         }
     }
+	
 }

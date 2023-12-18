@@ -8,7 +8,7 @@
 							<h1 class="text-white">
 								<span>1500+</span> Jobs posted last week				
 							</h1>	
-							<form action="search.html" class="serach-form-area">
+							<form action="<?=base_url('index.php/home/searchjob')?>" method="POST" novalidate>
 								<div class="row justify-content-center form-wrap">
 									<div class="col-lg-4 form-cols">
 										<input type="text" class="form-control" name="search" placeholder="what are you looging for?">
@@ -42,7 +42,7 @@
 										</div>										
 									</div>
 									<div class="col-lg-2 form-cols ">
-									    <button type="button" class="btn btn-info">
+									    <button type="submit" class="btn btn-info">
 									      <span class="lnr lnr-magnifier"></span> Search
 									    </button>
 									</div>								

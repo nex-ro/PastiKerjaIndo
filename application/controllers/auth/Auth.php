@@ -106,7 +106,9 @@ class Auth extends RestController
         
 
     }
+
     function register_get()
+
     {
         if ($this->session->userdata('email')) {
             redirect('home');
