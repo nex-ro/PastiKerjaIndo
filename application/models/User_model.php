@@ -78,25 +78,18 @@ class User_model extends CI_Model
   {
    $this->db->insert('chat_user', $data);
   }
-  function search_lowongan($table,$lokasiL,$kategoriL,$cariL){
+  function search_lowongan($table,$cariL,$lokasiL,$kategoriL){
+    echo $cariL;
+      $this->db->like('lowongan', $cariL, 'after');
+      if($kategoriL != ''){
+        $this->db->where('kategori', $kategoriL);
+      }
+      $this->db->where('lokasi', $lokasiL);
+      
+    $querry = $this ->db->get($table);
 
-    if ($cariL != null){
-      $query = $this->db->like('lowongan', $cariL, 'after');
-    }else{
-      $query = $this->db->like('lokasi', $lokasiL, 'after');
-    }
-    if ($lokasiL != null){
-      $query = $this->db->and_like('lokasi', $lokasiL, 'after');
-    }
-    if ($kategoriL != null){
-      $query = $this->db->and_like('kategori', $kategoriL);
-    }
-    $query = $this->db->get($table);
-    if ($query->num_rows() > 0) {
-      return $query->result(); 
-    } else {
-      return array(); 
-    }  
+    
+    return $querry->result(); 
     
   }
   public function selectAll($table){
