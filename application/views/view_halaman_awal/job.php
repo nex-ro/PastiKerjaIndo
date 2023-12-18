@@ -1,40 +1,45 @@
 <div class="bg" style="background-image: -webkit-linear-gradient(0deg, #bfacff 0%, #795fff 100%);padding: 20px;padding-top: 50px;">
     <div class="banner-content col-lg-12" style="margin-top: 0;">
-        <form action="" style="">
-            <div class="row justify-content-center form-wrap">
-                <div class="col-lg-4 form-cols">
-                    <input type="text" class="form-control" name="search" placeholder="what are you looging for?">
-                </div>
-                <div class="col-lg-3 form-cols">
-                    <div class="default-select" id="default-selects">
-                        <select>
-                            <option value=" 1">Select area</option>
-                            <option value="2">Dhaka</option>
-                            <option value="3">Rajshahi</option>
-                            <option value="4">Barishal</option>
-                            <option value="5">Noakhali</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3 form-cols">
-                    <div class="default-select" id="default-selects2">
-                        <select>
-                            <option value="1">All Category</option>
-                            <option value="2">Medical</option>
-                            <option value="3">Technology</option>
-                            <option value="4">Goverment</option>
-                            <option value="5">Development</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-2 form-cols ">
-                    <button type="button" class="btn btn-info">
-                        <span class="lnr lnr-magnifier"></span> Search
-                    </button>
-                </div>
-            </div>
-
-        </form>
+	<form action="<?=base_url('index.php/home/searchjob')?>" method="POST" novalidate>
+								<div class="row justify-content-center form-wrap">
+									<div class="col-lg-4 form-cols">
+										<input type="text" class="form-control" name="cari" value="" placeholder="what are you looging for?">
+									</div>
+									<div class="col-lg-3 form-cols">
+										<div class="default-select" id="default-selects"">
+											<select name="lokasi">
+												<option  selected value="">pilih area</option>
+												<?php
+    												foreach ($lowongan as $row) {
+														?>
+														<option value="<?php echo $row->lokasi; ?>">
+															<?php echo $row->lokasi ?>
+														</option>
+														<?php
+													}
+											
+?>
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-3 form-cols">
+										<div class="default-select" id="default-selects2">
+											<select name="kategori">
+												<option value="">All Category</option>
+												<option value="2">Medical</option>
+												<option value="3">Technology</option>
+												<option value="4">Goverment</option>
+												<option value="5">Development</option>
+											</select>
+										</div>										
+									</div>
+									<div class="col-lg-2 form-cols ">
+									    <button type="submit" class="btn btn-info">
+									      <span class="lnr lnr-magnifier"></span> Search
+									    </button>
+									</div>								
+								</div>
+							</form>	
     </div>
 </div>		
 			<!-- Start post Area -->
@@ -49,41 +54,55 @@
 								<li><a href="#">part Time</a></li>
 							</ul>
 							
-							<div class="single-post d-flex flex-row">
-								<div class="thumb">
-									<img src="<?=base_url('assets')?>/img/post.png" alt="">
-									<ul class="tags">
-										<li>
-											<a href="#">Art</a>
-										</li>
-										<li>
-											<a href="#">Media</a>
-										</li>
-										<li>
-											<a href="#">Design</a>					
-										</li>
-									</ul>
-								</div>
-								<div class="details">
-									<div class="title d-flex flex-row justify-content-between">
-										<div class="titles">
-											<a href="single.html"><h4>Creative Art Designer</h4></a>
-											<h6>Premium Labels Limited</h6>					
-										</div>
-										<ul class="btns">
-											<li><a href="#"><span class="lnr lnr-heart"></span></a></li>
-											<li><a href="#">Apply</a></li>
-										</ul>
-									</div>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut dolore magna aliqua.
-									</p>
-									<h5>Job Nature: Full time</h5>
-									<p class="address"><span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi Dhaka</p>
-									<p class="address"><span class="lnr lnr-database"></span> 15k - 25k</p>
-								</div>
-							</div>
-							
+							<?php
+               
+    	foreach ($lowongan as $row) {
+			    ?>
+                <div class="single-post d-flex flex-row">
+                    <div class="thumb">
+                        <img src="<?=base_url('assets')?>/img/post.png" alt="">
+                        <ul class="tags">
+                            <li>
+                                <a href="#">Art</a>
+                            </li>
+                            <li>
+                                <a href="#">Media</a>
+                            </li>
+                            <li>
+                                <a href="#">Design</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="details">
+                        <div class="title d-flex flex-row justify-content-between">
+                            <div class="titles">
+                                <a href="single.html">
+                                    <h4><?php echo $row->lokasi ?></h4>
+                                </a>
+                                <h6>Premium Labels Limited</h6>
+                            </div>
+                            <ul class="btns">
+                                <li><a href="#"><span class="lnr lnr-heart"></span></a></li>
+                                <li><a href="#">Apply</a></li>
+                            </ul>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt
+                            ut dolore magna aliqua.
+                        </p>
+                        <h5>Job Nature: Full time</h5>
+                        <p class="address"><span class="lnr lnr-map"></span> 56/8, Panthapath Dhanmondi Dhaka</p>
+                        <p class="address"><span class="lnr lnr-database"></span> 15k - 25k</p>
+                    </div>
+                </div>
+
+
+                <?php
+                                                        
+													}
+											
+?>
+
 							<a class="text-uppercase loadmore-btn mx-auto d-block" href="category.html">Load More job Posts</a>
 
 						</div>

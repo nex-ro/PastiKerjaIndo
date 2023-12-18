@@ -11,12 +11,12 @@
 							<form action="<?=base_url('index.php/home/searchjob')?>" method="POST" novalidate>
 								<div class="row justify-content-center form-wrap">
 									<div class="col-lg-4 form-cols">
-										<input type="text" class="form-control" name="search" placeholder="what are you looging for?">
+										<input type="text" class="form-control" name="cari" value="" placeholder="what are you looging for?">
 									</div>
 									<div class="col-lg-3 form-cols">
 										<div class="default-select" id="default-selects"">
-											<select>
-												<option disabled selected value="">pilih area</option>
+											<select name="lokasi">
+												<option  selected value="">pilih area</option>
 												<?php
     												foreach ($lowongan as $row) {
 														?>
@@ -32,8 +32,8 @@
 									</div>
 									<div class="col-lg-3 form-cols">
 										<div class="default-select" id="default-selects2">
-											<select>
-												<option value="1">All Category</option>
+											<select name="kategori">
+												<option value="">All Category</option>
 												<option value="2">Medical</option>
 												<option value="3">Technology</option>
 												<option value="4">Goverment</option>

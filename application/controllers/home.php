@@ -12,20 +12,20 @@ class home extends RestController {
 	public function index_get()
 	{
 		$data['lowongan'] = $this->user->selectAll('lowongan');
-		// $this->load->view('welcome_message');
 		$this->load->view('layout/header');
 		$this->load->view('view_halaman_awal/index',$data);
 		$this->load->view('layout/footer');
 	}
 	public function job_get()
 	{
-		
+		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$this->load->view('layout/header');
-		$this->load->view('view_halaman_awal/job');
+		$this->load->view('view_halaman_awal/job',$data);
 		$this->load->view('layout/footer');
 	}
 	public function searchjob_get()
 	{
+		$data['lowongan'] = $this->user->selectAll('lowongan');echo $this->input->post('cari', true);
 		$data['search'] = $this->user->search_lowongan('lowongan',$this->input->post('cari', true),$this->input->post('lokasi', true),$this->input->post('kategori', true));
 		$this->load->view('layout/header');
 		$this->load->view('view_halaman_awal/search_job',$data);
