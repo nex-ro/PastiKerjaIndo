@@ -101,5 +101,13 @@ class home extends RestController {
             redirect('home');        
         }
     }
+	public function profil_get()
+	{
+		// $this->load->view('welcome_message');
+		// $this->load->view('layout/header');
+		$this->load->view('view_halaman_awal/profil');
+		$this->load->view('layout/footer');
+	}
+	
 	
 }
