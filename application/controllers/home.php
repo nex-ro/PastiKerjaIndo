@@ -31,7 +31,7 @@ class home extends RestController
 	{
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 
-		$data['search'] = $this->user->search_lowongan('lowongan',$this->input->post('cari', true),$this->input->post('lokasi', true),$this->input->post('kategori', true));
+		$data['search'] = $this->user->search_lowongan('lowongan', $this->input->post('cari', true), $this->input->post('lokasi', true), $this->input->post('kategori', true));
 
 		$this->load->view('layout/header');
 		$this->load->view('view_halaman_awal/search_job', $data);
@@ -110,12 +110,15 @@ class home extends RestController
 	public function profil_get()
 	{
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
+		$data['carrier'] = $this->user->getWhereAll('experience', 'id_user', $this->session->userdata('id_user'));
+		$data['pendidikan'] = $this->user->getWhereAll('pendidikan', 'id_user', $this->session->userdata('id_user'));
+		$data['project'] = $this->user->getWhereAll('projects', 'id_user', $this->session->userdata('id_user'));
+
 		$this->load->view('view_halaman_awal/profil', $data);
 		$this->load->view('layout/footer');
 	}
 	public function UpdatePersonalInfo_get()
 	{
-		echo"true";
 		$data = [
 			'profilePicture' => htmlspecialchars($this->input->post('profilePicture', true)),
 			'nama' => htmlspecialchars($this->input->post('nama', true)),
@@ -133,17 +136,62 @@ class home extends RestController
 		$this->user->Update_user_data($data, $this->input->post('id_user'));
 		redirect(site_url("home/profil"));
 	}
-	public function UpdateEducation_get()
+	public function UpdateCarrier_get()
 	{
 		$data = [
 			'profesi' => ($this->input->post('job')),
 			'company' => ($this->input->post('company')),
 			'durasi' => ($this->input->post('durasi')),
-			'desc' => $this->input->post('desc'),
+			'desc_exp' => $this->input->post('desc'),
 			'id_user' => $this->input->post('id_user'),
-			
 		];
-		$this->user->insert_global("experience",$data );
+		$this->user->insert_global("experience", $data);
+		redirect(site_url("home/profil"));
+	}
+	public function EditCarrier_get()
+	{
+		$data = [
+			'profesi' => ($this->input->post('job')),
+			'company' => ($this->input->post('company')),
+			'durasi' => ($this->input->post('durasi')),
+			'desc_exp' => $this->input->post('desc'),
+			'id_user' => $this->input->post('id_user'),
+
+		];
+		$this->db->where('id_exp', $this->input->post('id_exp'));
+		$this->db->update('experience', $data);
+		redirect(site_url("home/profil"));
+	}
+	public function editEdu_get(){
+		$data = [
+			'nama_pendidikan' => ($this->input->post('kampus')),
+			'gelar' => ($this->input->post('gelar')),
+			'status' => ($this->input->post('status')),
+		];
+		print_r($data);
+		$this->db->where('id_pendidikan', $this->input->post('id_pendidikan'));
+		$this->db->update('pendidikan', $data);
+		redirect(site_url("home/profil"));
+	}
+	public function educationAdd_get(){
+		$data = [
+			'nama_pendidikan' => ($this->input->post('kampus')),
+			'gelar' => ($this->input->post('gelar')),
+			'status' => ($this->input->post('status')),
+			'id_user' => ($this->input->post('id_user')),
+		];
+		$this->user->insert_global("pendidikan", $data);
+		redirect(site_url("home/profil"));
+
+	}
+	public function ProjectAdd_get(){
+		$data = [
+			'nama_project' => ($this->input->post('nama')),
+			'link_project' => ($this->input->post('link')),
+			'desc' => ($this->input->post('desc')),
+			'id_user' => ($this->input->post('id_user')),
+		];
+		$this->user->insert_global("projects", $data);
 		redirect(site_url("home/profil"));
 	}
 }

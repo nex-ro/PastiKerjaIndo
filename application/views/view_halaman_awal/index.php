@@ -63,7 +63,7 @@
 							<div class="single-feature">
 								<h4>Searching</h4>
 								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing.
+									Look for the job vacanty 
 								</p>
 							</div>
 						</div>
@@ -71,23 +71,23 @@
 							<div class="single-feature">
 								<h4>Applying</h4>
 								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing.
+									Applying the job vacanty
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-feature">
-								<h4>Security</h4>
+								<h4>Follow the step</h4>
 								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing.
+									Follow the instruction
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-feature">
-								<h4>Notifications</h4>
+								<h4>Acceptance</h4>
 								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing.
+									got accept on your dream Job
 								</p>
 							</div>
 						</div>																		
@@ -248,67 +248,72 @@
 				</div>	
 			</section>
 			<!-- End feature-cat Area -->
-			
-
-			<!-- Start callto-action Area -->
-			<section class="callto-action-area section-gap" id="join">
+			<!-- Start service Area -->
+			<section class="service-area section-gap" id="service">
 				<div class="container">
 					<div class="row d-flex justify-content-center">
-						<div class="menu-content col-lg-9">
-							<div class="title text-center">
-								<h1 class="mb-10 text-white">Join us today without any hesitation</h1>
-								<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-								<a class="primary-btn" href="#">I am a Candidate</a>
-								<a class="primary-btn" href="#">Request Free Demo</a>
+						<div class="col-md-8 pb-40 header-text">
+							<h1>Why Choose Us</h1>
+							<p>
+								Who are in extremely love with eco friendly system.
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-md-6">
+							<div class="single-service">
+								<h4><span class="lnr lnr-user"></span>Expert Technicians</h4>
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>
 							</div>
 						</div>
-					</div>	
-				</div>	
-			</section>
-			<!-- End calto-action Area -->
-
-			<!-- Start download Area -->
-			<section class="download-area section-gap" id="app">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6 download-left">
-							<img class="img-fluid" src="<?=base_url('assets')?>/img/d1.png" alt="">
+						<div class="col-lg-4 col-md-6">
+							<div class="single-service">
+								<h4><span class="lnr lnr-license"></span>Professional Service</h4>
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>								
+							</div>
 						</div>
-						<div class="col-lg-6 download-right">
-							<h1>Download the <br>
-							Job Listing App Today!</h1>
-							<p class="subs">
-								It won’t be a bigger problem to find one video game lover in your neighbor. Since the introduction of Virtual Game, it has been achieving great heights so far as its popularity and technological advancement are concerned.
-							</p>
-							<div class="d-flex flex-row">
-								<div class="buttons">
-									<i class="fa fa-apple" aria-hidden="true"></i>
-									<div class="desc">
-										<a href="#">
-											<p>
-												<span>Available</span> <br>
-												on App Store
-											</p>
-										</a>
-									</div>
-								</div>
-								<div class="buttons">
-									<i class="fa fa-android" aria-hidden="true"></i>
-									<div class="desc">
-										<a href="#">
-											<p>
-												<span>Available</span> <br>
-												on Play Store
-											</p>
-										</a>
-									</div>
-								</div>									
-							</div>						
+						<div class="col-lg-4 col-md-6">
+							<div class="single-service">
+								<h4><span class="lnr lnr-phone"></span>Great Support</h4>
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>								
+							</div>
 						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="single-service">
+								<h4><span class="lnr lnr-rocket"></span>Technical Skills</h4>
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>				
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="single-service">
+								<h4><span class="lnr lnr-diamond"></span>Highly Recomended</h4>
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>								
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6">
+							<div class="single-service">
+								<h4><span class="lnr lnr-bubble"></span>Positive Reviews</h4>
+								<p>
+									Usage of the Internet is becoming more common due to rapid advancement of technology and power.
+								</p>									
+							</div>
+						</div>						
 					</div>
 				</div>	
 			</section>
-			<!-- End download Area -->
-		
+			<!-- End service Area -->						
+
+			
+			
 
 
