@@ -1,48 +1,59 @@
 <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4"> -->
-  <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-<!-- </div> --> 
+<!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+<!-- </div> -->
+<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+  <div class="input-group">
+    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button">
+        <i class="fas fa-search fa-sm"></i>
+      </button>
+    </div>
+  </div>
+</form>
 <div class="container-md p-2">
   <div class="d-flex justify-content-between">
-      <h1 class="h3 mb-0 text-gray-800">Data Lowongan</h1>
+    <h1 class="h3 mb-0 text-gray-800">Data Lowongan</h1>
 
-        <a href="#"><button class='btn btn-primary mb-3 mt-3 d-flex justify-content-end'>Tambah Data</button></a>
-      </div>
+    <a href="#"><button class='btn btn-primary mb-3 mt-3 d-flex justify-content-end'>Tambah Data</button></a>
+  </div>
   <table id="example" class="table table-striped" style="width:100%">
     <thead>
       <tr>
         <th>#</th>
         <th>Nama Pemberi</th>
         <th>Pekerjaan</th>
-        <th>Company</th>
-        <th>type</th>
-        <th>salary</th>
+        <th>Kategori</th>
         <th>lokasi</th>
         <th>aksi</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-<td>1</td>
-        <td>deri</td>
-        <td>Admin</td>
-        <td>PT.THANOS Ganteng</td>
-        <td>Full Time</td>
-        <td>Rp.20.000/Jam</td>
-        <td>Jl.Sudriman,Pekanbaru</td>
-        <td>
-          <a><button type='button' class='btn btn-secondary'>Detail</button></a><a>
-            <a href=""><button type='button' class='btn btn-danger'>Hapus</button></a>
-          </a>
-        </td>
+        <?php
+        foreach ($lowongan as $row) {
+          $no = 0;
+          $no++;
+        ?>
+          <td><?php echo $no ;$pemberi = $this->user->getwhere('user','id_user',$row->$id_user);?></td>
+          <td><?php echo $pemberi->nama ?></td>
+          <td><?php echo $lowongan->lowongan ?></td>
+          <td><?php echo $lowongan->status ?></td>
+          <td><?php echo $lowongan->kategori ?></td>
+          <td><?php echo $lowongan->lokasi ?></td>
+          <td><a href=""><button type='button' class='btn btn-danger'>Hapus</button></a></td>
+        <?php
+        }
+        ?>
+ 
+        
       </tr>
     <tfoot>
-    <tr>
+      <tr>
         <th>#</th>
         <th>Nama Pemberi</th>
         <th>Pekerjaan</th>
-        <th>Company</th>
-        <th>type</th>
-        <th>salary</th>
+        <th>Kategori</th>
         <th>lokasi</th>
         <th>aksi</th>
       </tr>
