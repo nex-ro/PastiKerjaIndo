@@ -29,8 +29,6 @@ class User_model extends CI_Model
 
   
   // ------------------------------------------------------------------------
-
-
   // ------------------------------------------------------------------------
   public function update($where, $data)
   {
@@ -94,6 +92,17 @@ class User_model extends CI_Model
     return $querry->result(); 
     
   }
+
+  public function getwhere($table, $where, $id = null){
+    if ($id !== null) {
+        $this->db->where($where, $id);
+    } else {
+        $this->db->where($where);
+    }
+    $query = $this->db->get($table);
+    return $query->row(); // Use row() instead of result()
+}
+
   public function selectAll($table){
     $query = $this->db->get($table);
         

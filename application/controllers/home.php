@@ -25,7 +25,7 @@ class home extends RestController {
 	}
 	public function searchjob_get()
 	{
-		$data['lowongan'] = $this->user->selectAll('lowongan');echo $this->input->post('cari', true);
+		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$data['search'] = $this->user->search_lowongan('lowongan',$this->input->post('cari', true),$this->input->post('lokasi', true),$this->input->post('kategori', true));
 		$this->load->view('layout/header');
 		$this->load->view('view_halaman_awal/search_job',$data);
