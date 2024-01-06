@@ -14,20 +14,12 @@ class Auth extends RestController
     function index_get()
     {
         include_once APPPATH . "libraries/vendor/autoload.php";
-
         $google_client = new Google_Client();
-
         $google_client->setClientId('223694650381-5m3v5m0kcp81nsuln02kljp0sfvknp45.apps.googleusercontent.com'); //Define your ClientID
-
         $google_client->setClientSecret('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'); //Define your Client Secret Key
-
         $google_client->setRedirectUri('http://localhost/pasti_kerja_indonesia/index.php/auth/Auth/loginApi'); //Define your Redirect Uri
-
         $google_client->addScope('email');
-
         $google_client->addScope('profile');
-
-
         $login_button = '<a href="' . $google_client->createAuthUrl() . '"> <divgi class="btn btn-google btn-user btn-block">
         <i class="fab fa-google fa-fw"></i> Login with Google
     </divgi></a>';
@@ -68,43 +60,38 @@ class Auth extends RestController
                 $this->session->set_userdata('access_token', $token['access_token']);
                 $google_service = new Google_Service_Oauth2($google_client);
                 $data = $google_service->userinfo->get();
-                print_r($data);
-                print($this->user->Is_already_register($data['email']));
-                $current_datetime = date('Y-m-d H:i:s');
-                if ($this->user->Is_already_register($data['id'])) {
+                if ($this->user->Is_already_register($data['email'])) {
                     //update data
-                    echo"test";
                     $user_data = array(
-                        'id_google' => $data['id'],
-                        'nama' => $data['given_name'] + $data['family_name'],
-                        'email' => $data['email'],
-                        'profilePicture' => $data['picture'],
-                        'role' => "user",
-                        'jenis_kelamin' => $data['gender']
-                    );
-                    $this->session->set_userdata($user_data);
-
-                    $this->user->Update_user_data($user_data, $data['id']);
-                } else {
-                    //insert data
-                    $user_data = array(
-                        'id_google' => $data['id'],
+                        // 'id_user' => $data['id_user'],
                         'nama' => $data['given_name'].$data['family_name'],
                         'email' => $data['email'],
                         'profilePicture' => $data['picture'],
                         'role' => "user",
+                        'lokasi' => "Not Set",
+                        'jenis_kelamin' => $data['gender']
+                    );
+                   
+                    $user = $this->db->get_where('user', ['email' =>  $data['email']])->row_array();
+                    $user_data['id_user'] = $user['id_user'];
+                    $this->session->set_userdata($user_data);
+                    $this->user->Update_user_data($user_data, $user['id_user']);
+                } else {
+                    $user = $this->db->get_where('user', ['email' =>  $data['email']])->row_array();
+                    $user_data = array(
+                        'id_user' => $user['id_user'],
+                        'nama' => $data['given_name'].$data['family_name'],
+                        'email' => $data['email'],
+                        'profilePicture' => $data['picture'],
+                        'role' => "user",
+                        'lokasi' => "Not Set",
                     );
                     $this->session->set_userdata($user_data);
-
                     $this->user->Insert_user_data($user_data);
-                }
-                $this->session->set_userdata('user_data', $user_data);
-            
+                }                
             }
         }
             redirect(site_url(""));
-        
-
     }
 
     function register_get()
@@ -118,6 +105,9 @@ class Auth extends RestController
         ]);
         $this->form_validation->set_rules('noHP', 'noHP', 'required|trim', [
             'required' => 'Please enter your phone number',
+        ]);
+        $this->form_validation->set_rules('lokasi', 'lokasi', 'required|trim', [
+            'required' => 'Please enter your location',
         ]);
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]', [
             'is_unique' => 'Email Have Registered!',
@@ -136,10 +126,12 @@ class Auth extends RestController
             $data = [
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
+                // 'id_user' => htmlspecialchars($this->input->post('email', true)),
                 'noHp' => htmlspecialchars($this->input->post('noHP', true)),
                 'pass' => password_hash($this->input->post('pass'), PASSWORD_DEFAULT),
-                'profilePicture' => 'default.jpg',
+                'profilePicture' => base_url('assets/img/').'pp.jpg',
                 'role' => "user",
+                'lokasi'=>htmlspecialchars($this->input->post('lokasi', true)),
                 'jenis_kelamin' => htmlspecialchars($this->input->post('gender', true))
             ];
             $this->user->insert($data);
@@ -163,10 +155,10 @@ class Auth extends RestController
         if ($user) {
             if (password_verify($password, $user['pass'])) {
                 $data = [
-                    'email' => $user['email'],
                     'nama' => $user['nama'],
-                    'role' => $user['role'],
-                    'id' => $user['id'],
+                    'email' => $user['email'],
+                    'role' => "user",
+                    'id_user' => $user['id_user'],
                 ];
                 $this->session->set_userdata($data);
                 redirect('Home');
@@ -181,10 +173,8 @@ class Auth extends RestController
     }
     public function logout_get()
     {
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('role');
-        $this->session->unset_userdata('nama');
-        $this->session->unset_userdata('id');
+        // $this->session->unset_userdata;
+        $this->session->sess_destroy();
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Log out Success</div>');
         redirect('login');
     }
