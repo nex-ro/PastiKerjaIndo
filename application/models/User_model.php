@@ -27,7 +27,7 @@ class User_model extends CI_Model
     parent::__construct();
   }
 
-  
+
   // ------------------------------------------------------------------------
   // ------------------------------------------------------------------------
   public function update($where, $data)
@@ -40,7 +40,7 @@ class User_model extends CI_Model
     $this->db->insert($this->table, $data);
     return $this->db->insert_id();
   }
-  public function insert_global($where,$data)
+  public function insert_global($where, $data)
   {
     $this->db->insert($where, $data);
     return $this->db->insert_id();
@@ -52,45 +52,43 @@ class User_model extends CI_Model
     return $this->db->affected_rows();
   }
   // ------------------------------------------------------------------------
-  function Is_already_register($id)
+  function Is_already_register($email)
   {
-   $this->db->where('email', $id);
-   $query = $this->db->get('user');
-   if($query->num_rows() > 0)
-   {
-    echo"tes";
-    return true;
-   }
-   else
-   {
-   echo"false";
-    return false;
-   }
+    $query = $this->db->get_where('user', array('email' => $email));
+    $result = $query->result();
+    // echo ($query->num_rows() );
+    if ($query->num_rows() > 0) {
+      // Rows found, email exists
+      return true;
+    } else {
+      // No rows found, email does not exist
+      return false;
+    }
   }
- 
+
   function Update_user_data($data, $id)
   {
-   $this->db->where('id_user', $id);
-   $this->db->update('user', $data);
+    $this->db->where('id_user', $id);
+    $this->db->update('user', $data);
   }
- 
+
   function Insert_user_data($data)
   {
-   $this->db->insert('user', $data);
+    $this->db->insert('user', $data);
   }
-  function search_lowongan($table,$cariL,$lokasiL,$kategoriL){
+  function search_lowongan($table, $cariL, $lokasiL, $kategoriL)
+  {
     echo $cariL;
-      $this->db->like('lowongan', $cariL, 'after');
-      if($kategoriL != ''){
-        $this->db->where('kategori', $kategoriL);
-      }
-      $this->db->where('lokasi', $lokasiL);
-      
-    $querry = $this ->db->get($table);
+    $this->db->like('lowongan', $cariL, 'after');
+    if ($kategoriL != '') {
+      $this->db->where('kategori', $kategoriL);
+    }
+    $this->db->where('lokasi', $lokasiL);
 
-    
-    return $querry->result(); 
-    
+    $querry = $this->db->get($table);
+
+
+    return $querry->result();
   }
 
   public function getwhere($table, $where, $id = null){
@@ -103,17 +101,16 @@ class User_model extends CI_Model
     return $query->row(); // Use row() instead of result()
 }
 
-  public function selectAll($table){
+  public function selectAll($table)
+  {
     $query = $this->db->get($table);
-        
-    if ($query->num_rows() > 0) {
-        return $query->result(); 
-    } else {
-        return array(); 
-    }  
-  }
 
-  
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return array();
+    }
+  }
 }
 
 /* End of file User_model_model.php */

@@ -33,6 +33,11 @@
                                         <?= form_error('email','<small class = "text-danger pl-3">','</small>');?>
                                 </div>
                                 <div class="form-group">
+                                    <input type="email" name="lokasi" class="form-control form-control-user"
+                                        id="exampleInputEmail" placeholder="location Address" value="<?= set_value('lokasi'); ?>">
+                                        <?= form_error('lokasi','<small class = "text-danger pl-3">','</small>');?>
+                                </div>
+                                <div class="form-group">
                                 <select class="form-control" id="gender" name="gender">
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>

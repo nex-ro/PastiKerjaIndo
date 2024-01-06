@@ -49,18 +49,23 @@
 						<li><a href="<?= base_url('index.php/home/news') ?>">News</a></li>
 						<li><a href="<?= base_url('index.php/home/about') ?>">About us</a></li>
 
-						<?php if ($this->session->userdata('email')) { ?>
+						<?php
+						if ($this->session->userdata('email')) { ?>
 							<li><a href="<?= base_url('index.php/home/buatlowongan') ?>">Buat Lowongan</a></li>
-							<li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?>pp.png" alt="" style="width: 30px;border-radius: 50%;"></a>
-							<ul>
-								<li><a href="<?= site_url('home/profil')?>">Profil</a></li>
-								<li><a href="<?= site_url('auth/Auth/logout') ?>" style="color: red;">Logout</a></li>
-							</ul>
-						</li>
-						<?php } else { ?>
-							<li><a class="ticker-btn" href="<?= site_url('login'); ?>">Login</a></li>
-						<?php } ?>
-						
+							<?php if (null !== $this->session->userdata('profilePicture')) { ?>
+								<li class="menu-has-children"><a href=""><img src="<?= $this->session->userdata('profilePicture') ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
+								<?php } else { ?>
+								<li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?>pp.png" alt="" style="width: 30px;border-radius: 50%;"></a>
+								<?php } ?>
+								<ul>
+									<li><a href="<?= site_url('home/profil') ?>">Profil</a></li>
+									<li><a href="<?= site_url('auth/Auth/logout') ?>" style="color: red;">Logout</a></li>
+								</ul>
+								</li>
+							<?php } else { ?>
+								<li><a class="ticker-btn" href="<?= site_url('login'); ?>">Login</a></li>
+							<?php } ?>
+
 
 					</ul>
 				</nav><!-- #nav-menu-container -->
