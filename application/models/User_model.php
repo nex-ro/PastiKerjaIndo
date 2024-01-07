@@ -66,10 +66,14 @@ class User_model extends CI_Model
       // Rows found, email exists
       return true;
     } else {
-      // No rows found, email does not exist
+      
       return false;
     }
   }
+  public function hapus_data($on ,$id,$table) {
+    $this->db->where($on, $id);
+    $this->db->delete($table);
+}
 
   function Update_user_data($data, $id)
   {
@@ -119,16 +123,7 @@ class User_model extends CI_Model
     $query = $this->db->get($table);
     return $query->row(); // Use row() instead of result()
   }
-  public function getWhereAll($table, $where, $id)
-  {
-    $this->db->select('*');
-    $this->db->from($table);
-    $this->db->where($where, $id);
-
-    $query = $this->db->get();
-    $result = $query->result();
-    return $result;
-  }
+ 
   public function selectAll($table)
   {
     $query = $this->db->get($table);

@@ -17,7 +17,7 @@ class Company extends RestController
 
   public function index_get()
   {
-    $data['lowongan'] = $this->user->selectAll('lowongan');
+    $data['lowongan'] = $this->user->getWhereAll('lowongan', 'id_user',  $this->session->userdata('id_user'),);
     $this->load->view('layout/headerCompany');
     $this->load->view('company/listLowongan',$data);
     $this->load->view('layout/footerAdm');
@@ -64,10 +64,33 @@ class Company extends RestController
     $data['carrier'] = $this->user->getWhereAll('experience', 'id_user', $this->session->userdata('id_user'));
     $data['pendidikan'] = $this->user->getWhereAll('pendidikan', 'id_user', $this->session->userdata('id_user'));
     $data['project'] = $this->user->getWhereAll('projects', 'id_user', $this->session->userdata('id_user'));
-
     $this->load->view('view_halaman_awal/profil', $data);
     $this->load->view('layout/footer');
   }
+  public function editLowongan_get(){
+    $data = [
+      'lowongan' => htmlspecialchars($this->input->post('lowongan', true)),
+      'requirement' => htmlspecialchars($this->input->post('requirement', true)),
+      'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
+      'kategori' => htmlspecialchars($this->input->post('kategori'), true),
+      'status' => htmlspecialchars($this->input->post('status'), true),
+      'id_user' => $this->session->userdata('id_user'),
+      'type' => htmlspecialchars($this->input->post('type'), true),
+      'salary' => htmlspecialchars($this->input->post('salary'), true),
+      'desc' => htmlspecialchars($this->input->post('desc'), true),
+    ];
+		$this->db->where('id_lowongan', $this->input->post('id_lowongan'));
+		$this->db->update('lowongan', $data);
+		redirect(site_url("Company"));
+  }
+  public function delateLowongan_get(){
+    $id=$_GET['id'];
+    $this->user->hapus_data('id_lowongan' ,$id,'lowongan');
+    redirect(site_url("Company"));
+
+  }
+
+
 }
 
 

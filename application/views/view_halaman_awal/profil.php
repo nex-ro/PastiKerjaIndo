@@ -199,7 +199,7 @@
 
             <?php foreach ($carrier as $row) { ?>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 400px; text-align: left;margin-top: 10px;margin-bottom: 10px; padding: 20px; border-radius: 10px;">
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$row->id_exp?>" style="width: 400px; text-align: left;margin-top: 10px;margin-bottom: 10px; padding: 20px; border-radius: 10px;">
                     <p style="font-size: 30px;margin: 0px;"><?= $row->profesi ?> <i class='bx bx-pencil'></i> </p>
                     <p style="font-size: 15px;margin: 0px;"><?= $row->company ?></p>
                     <p style="font-size: 15px;margin: 0px;"><?= $row->durasi ?></p>
@@ -207,7 +207,7 @@
                 <br>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal<?=$row->id_exp?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -324,14 +324,14 @@
             <p style="color: black; opacity: 0.7; font-size: 15px;">Tell employers about your education.</p>
             <div class="" style="max-width: 600px; width: fit-content;">
                 <?php foreach ($pendidikan as $row) {   ?>
-                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#UpdateEdu" style="width: 100%; text-align: left;margin-top: 10px;margin-bottom: 10px; padding: 20px; border-radius: 10px;">
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#UpdateEdu<?=$row->id_pendidikan?>" style="width: 100%; text-align: left;margin-top: 10px;margin-bottom: 10px; padding: 20px; border-radius: 10px;">
                         <p style="font-size: 30px;margin: 0px;"><?= $row->nama_pendidikan ?> <i class='bx bx-pencil'></i> </p>
                         <p style="font-size: 15px;margin: 0px;"><?= $row->status ?></p>
                         <p style="font-size: 15px;margin: 0px;"><?= $row->gelar ?></p>
                     </button>
                     <br>
                     <!-- Modal -->
-                    <div class="modal fade" id="UpdateEdu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="UpdateEdu<?=$row->id_pendidikan?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -425,14 +425,14 @@
             <p style="color: black; opacity: 0.7; font-size: 15px;">Tell People about the Amazing think you have do</p>
             <div class="" style="max-width: 600px; width: fit-content;">
                 <?php foreach ($project as $row) {   ?>
-                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#projectupd" style="width: 100%; text-align: left;margin-top: 10px;margin-bottom: 10px; padding: 20px; border-radius: 10px;">
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#projectupd<?=$row->id_project?>" style="width: 100%; text-align: left;margin-top: 10px;margin-bottom: 10px; padding: 20px; border-radius: 10px;">
                         <p style="font-size: 30px;margin: 0px;"><?= $row->nama_project ?> <i class='bx bx-pencil'></i> </p>
                         <p style="font-size: 15px;margin: 0px;"><?= $row->desc ?></p>
                         <p style="font-size: 15px;margin: 0px;"><?= $row->link_project ?></p>
                     </button>
                     <br>
                     <!-- Modal -->
-                    <div class="modal fade" id="projectupd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="projectupd<?=$row->id_project?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -442,22 +442,22 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="<?= site_url("home/ProjectAdd") ?>" method="post">
+                                    <form action="<?= site_url("home/updtProject") ?>" method="post">
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Project name</label>
-                                                <input required type="Text" name="nama" class="form-control form-control-user" id="exampleInputEmail" placeholder="Instuition Name">
+                                                <input required type="Text" value="<?=$row->nama_project?><" name="nama" class="form-control form-control-user" id="exampleInputEmail" placeholder="Instuition Name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">link / Article</label>
-                                                <input required type="Text" name="link" class="form-control form-control-user" id="exampleInputEmail" placeholder="">
+                                                <input required type="Text" value="<?=$row->link_project?>" name="link" class="form-control form-control-user" id="exampleInputEmail" placeholder="">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Description Project</label>
-                                                <textarea name="desc" id="" cols="30" rows="10" style="width: 100%;"></textarea>
+                                                <textarea name="desc" id="" cols="30" rows="10" style="width: 100%;"><?=$row->desc?></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <input type="number" name="id_user" class="form-control form-control-user" id="exampleInputEmail" placeholder="id Address" hidden value="<?= $personalInfo['id_user'] ?>">
+                                                <input type="number" name="id_project" class="form-control form-control-user" id="exampleInputEmail" placeholder="id Address" hidden value="<?= $personalInfo['id_user'] ?>">
                                             </div>
                                         </div>
                                         <div class="modal-footer">

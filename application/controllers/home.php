@@ -197,4 +197,16 @@ class home extends RestController
 		$this->user->insert_global("projects", $data);
 		redirect(site_url("home/profil"));
 	}
+	public function updtProject_get(){
+		$data = [
+			'nama_project' => ($this->input->post('nama')),
+			'link_project' => ($this->input->post('link')),
+			'desc' => ($this->input->post('desc')),
+		];
+		print_r($data);
+		$this->db->where('id_project', $this->input->post('id_project'));
+		$this->db->update('projects', $data);
+		redirect(site_url("home/profil"));
+	}
+	
 }
