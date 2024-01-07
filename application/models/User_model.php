@@ -130,6 +130,16 @@ class User_model extends CI_Model
     $query = $this->db->get($table);
     return $query->row(); // Use row() instead of result()
   }
+  public function getWhereAll($table, $where, $id)
+  {
+    $this->db->select('*');
+    $this->db->from($table);
+    $this->db->where($where, $id);
+
+    $query = $this->db->get();
+    $result = $query->result();
+    return $result;
+  }
  
   public function selectAll($table)
   {
@@ -151,6 +161,27 @@ class User_model extends CI_Model
     } else {
       return array();
     }
+  }
+  
+  function search_company($table, $cariL, $lokasiL)
+  {
+    if($cariL != ''){
+      $this->db->like('nama', $cariL, 'after');
+    }
+    if($lokasiL != ''){
+      $this->db->where('lokasi', $lokasiL);
+    }
+    $this->db->where('role', 'company');
+    $querry = $this->db->get($table);
+
+    return $querry->result();
+  }
+  function searchbytype($table, $cariL)
+  {
+    $this->db->where('type', $cariL);
+    $querry = $this->db->get($table);
+
+    return $querry->result();
   }
   public function tampiltotal($table)
   {
