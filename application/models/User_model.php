@@ -162,6 +162,7 @@ class User_model extends CI_Model
       return array();
     }
   }
+
   
   function search_company($table, $cariL, $lokasiL)
   {
@@ -194,6 +195,7 @@ class User_model extends CI_Model
     }
   }
  
+
   public function getWdistinct($table,$see)
   {
     $this->db->distinct($see);
