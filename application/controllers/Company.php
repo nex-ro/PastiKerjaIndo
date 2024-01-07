@@ -19,7 +19,7 @@ class Company extends RestController
   {
     $data['lowongan'] = $this->user->selectAll('lowongan');
     $this->load->view('layout/headerCompany');
-    $this->load->view('admin/listLowongan',$data);
+    $this->load->view('company/listLowongan',$data);
     $this->load->view('layout/footerAdm');
   }
   function buatlowongan_get()
