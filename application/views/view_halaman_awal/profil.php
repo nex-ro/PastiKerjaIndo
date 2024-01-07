@@ -54,7 +54,7 @@
                         if ($this->session->userdata('email')) { ?>
                             
                             <?php if (null !== $this->session->userdata('profilePicture')) { ?>
-                                <li class="menu-has-children"><a href=""><img src="<?= base_url() .$personalInfo['profilePicture'] ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
+                                <li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/').$personalInfo['profilePicture'] ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
                                 <?php } else { ?>
                                 <li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?>pp.png" alt="" style="width: 30px;border-radius: 50%;"></a>
                                 <?php } ?>
