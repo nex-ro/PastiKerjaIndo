@@ -11,7 +11,7 @@
 											<select name="lokasi">
 												<option  selected value="">pilih area</option>
 												<?php
-    												foreach ($lowongan as $row) {
+    												foreach ($lokasi as $row) {
 														?>
 														<option value="<?php echo $row->lokasi; ?>">
 															<?php echo $row->lokasi ?>
@@ -53,9 +53,9 @@
         <div class="row justify-content-center d-flex">
             <div class="col-lg-8 post-list">
                 <ul class="cat-list">
-                    <li><a href="#">Full Time</a></li>
-                    <li><a href="#">Intern</a></li>
-                    <li><a href="#">part Time</a></li>
+                    <li><a href="<?= base_url('index.php/home/searchjobtype?type=Fulltime' ) ?>">Full Time</a></li>
+                    <li><a href="<?= base_url('index.php/home/searchjobtype?type=Intern' ) ?>">Intern</a></li>
+                    <li><a href="<?= base_url('index.php/home/searchjobtype?type=Part time' ) ?>">Part Time</a></li>
                 </ul>
                 
                 <?php
@@ -77,14 +77,14 @@
 								</div>
 								<ul class="btns">
 
-									<li><a href="#"> <?php echo $row->kategori ?></a></li>
+									<li><a href="<?= base_url('index.php/home/searchjobkategori?kategori=' . $row->kategori) ?>"> <?php echo $row->kategori ?></a></li>
 									<li><a href="#">Apply</a></li>
 								</ul>
 							</div>
 
 							<h5>Type : <?php echo $row->type ?></h5>
 							<p class="address"><span class="lnr lnr-map"></span> Syarat : <?php echo $row->requirement ?></p>
-							<p class="address"><span class="lnr lnr-database"></span> 15k - 25k</p>
+							<p class="address"><span class="lnr lnr-database"><?php echo $row->salary ?></span></p>
 						</div>
 					</div>
 
@@ -106,8 +106,8 @@
 						<?php
 						foreach ($lokasi as $row) {
 						?>
-							<li><a class="justify-content-between d-flex" href="category.html">
-									<p><?php echo $row->lokasi ?></p>
+							<li><a class="justify-content-between d-flex"href="<?= base_url('index.php/home/searchjoblokasi?lokasi=' . $row->lokasi) ?>">
+							<?php echo $row->lokasi ?>
 								</a></li>
 						<?php
 						}
@@ -119,8 +119,8 @@
 					<?php
 						foreach ($kategori as $row) {
 						?>
-								<li><a class="justify-content-between d-flex" href="#">
-									<p><?php echo $row->kategori ?></p>
+								<li><a class="justify-content-between d-flex"href="<?= base_url('index.php/home/searchjobkategori?kategori=' . $row->kategori) ?>">
+							<?php echo $row->kategori ?>
 								</a></li>
 						<?php
 						}

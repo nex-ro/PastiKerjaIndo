@@ -57,14 +57,14 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="<?= base_url() ?>">Home</a></li>
-						<li><a href="<?= base_url('index.php/job') ?>">Job Search</a></li>
+						<li><a href="<?= base_url('index.php/job') ?>">Job</a></li>
 						<li><a href="<?= base_url('index.php/home/company') ?>">Company</a></li>
 						<li><a href="<?= base_url('index.php/home/news') ?>">News</a></li>
 						<li><a href="<?= base_url('index.php/home/about') ?>">About us</a></li>
 
 						<?php
 						if ($this->session->userdata('email')) { ?>
-							<li><a href="<?= base_url('index.php/home/buatlowongan') ?>">Buat Lowongan</a></li>
+
 							<!-- Nav Item - Alerts -->
 							<li class="nav-item dropdown no-arrow mx-1">
 								<a style="display: flex;flex-direction: column; text-align: center;" class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -115,10 +115,10 @@
 
 							<!-- Nav Item - Messages -->
 							<li class="nav-item dropdown no-arrow mx-1">
-								<a style="display: flex;flex-direction: column; text-align: center;"  class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="badge badge-danger badge-counter">7</span>	
-								<i style="font-size: 20px" class='bx bx-message-rounded-dots'></i> <!-- Counter - Messages -->
-									
+								<a style="display: flex;flex-direction: column; text-align: center;" class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<span class="badge badge-danger badge-counter">7</span>
+									<i style="font-size: 20px" class='bx bx-message-rounded-dots'></i> <!-- Counter - Messages -->
+
 								</a>
 								<!-- Dropdown - Messages -->
 								<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
@@ -172,11 +172,16 @@
 									<a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
 								</div>
 							</li>
-							<?php if (null !== $this->session->userdata('profilePicture')) { ?>
-								<li class="menu-has-children"><a href=""><img src="<?= $this->session->userdata('profilePicture') ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
-								<?php } else { ?>
-								<li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?>pp.png" alt="" style="width: 30px;border-radius: 50%;"></a>
-								<?php } ?>
+
+
+							<?php if (filter_var($this->session->userdata('profilePicture'), FILTER_VALIDATE_URL)) {
+							?> <li class="menu-has-children"><a href=""><img src="<?= $this->session->userdata('profilePicture') ?>" alt="" style="width: 30px;border-radius: 50%; border: 2px solid white;"></a>
+								<?php
+							} else {
+								?>
+								<li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?><?=$this->session->userdata('profilePicture') ?>" alt="" style="width: 30px;border-radius: 50%;border: 2px solid white;"></a>
+								<?php
+							} ?>
 								<ul>
 									<li><a href="<?= site_url('home/profil') ?>">Profil</a></li>
 									<li><a href="<?= site_url('auth/Auth/logout') ?>" style="color: red;">Logout</a></li>

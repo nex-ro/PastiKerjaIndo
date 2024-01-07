@@ -35,17 +35,80 @@ class home extends RestController
 	public function searchjob_get()
 	{
 		$data['lowongan'] = $this->user->selectAll('lowongan');
-
 		$data['search'] = $this->user->search_lowongan('lowongan', $this->input->post('cari', true), $this->input->post('lokasi', true), $this->input->post('kategori', true));
-
+		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$this->db->reset_query();
+		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$this->db->reset_query();
 		$this->load->view('layout/header');
 		$this->load->view('view_halaman_awal/search_job', $data);
 		$this->load->view('layout/footer');
 	}
+	public function searchjoblokasi_get()
+	{
+		$data['lowongan'] = $this->user->selectAll('lowongan');
+		$lokasi = $_GET['lokasi'];
+		$data['search'] = $this->user->search_lowongan('lowongan','',$lokasi,'');
+		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$this->db->reset_query();
+		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$this->db->reset_query();
+		$this->load->view('layout/header');
+		$this->load->view('view_halaman_awal/search_job', $data);
+		$this->load->view('layout/footer');
+	}
+	public function searchjobtype_get()
+	{
+		$data['lowongan'] = $this->user->selectAll('lowongan');
+		$type = $_GET['type'];
+		$data['search'] = $this->user->searchbytype('lowongan',$type);
+		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$this->db->reset_query();
+		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$this->db->reset_query();
+		$this->load->view('layout/header');
+		$this->load->view('view_halaman_awal/search_job', $data);
+		$this->load->view('layout/footer');
+	}
+	public function searchjobkategori_get()
+	{
+		$data['lowongan'] = $this->user->selectAll('lowongan');
+		$kategori = $_GET['kategori'];
+		$data['search'] = $this->user->search_lowongan('lowongan','','',$kategori);
+		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$this->db->reset_query();
+		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$this->db->reset_query();
+		$this->load->view('layout/header');
+		$this->load->view('view_halaman_awal/search_job', $data);
+		$this->load->view('layout/footer');
+	}
+	
+	public function searchjobcompany_get()
+	{
+		$data['lowongan'] = $this->user->selectAll('lowongan');
+		$id_user = $_GET['id'];
+		$data['search'] = $this->user->search_lowongan_company('lowongan',$id_user);
+		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$this->db->reset_query();
+		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$this->db->reset_query();
+		$this->load->view('layout/header');
+		$this->load->view('view_halaman_awal/search_job', $data);
+		$this->load->view('layout/footer');
+	}
+	public function searchprofilecompany_get()
+	{
+		$data['company'] = $this->user->search_company('user',$this->input->post('search', true),'');	
+		$this->load->view('layout/header');
+		$this->load->view('view_halaman_awal/search_company', $data);
+		$this->load->view('layout/footer');
+	}
 	public function company_get()
 	{
+		$data['company'] = $this->user->selectcompany('user');
 		$this->load->view('layout/header');
-		$this->load->view('view_halaman_awal/company');
+		$this->load->view('view_halaman_awal/company',$data);
 		$this->load->view('layout/footer');
 	}
 	public function news_get()
@@ -200,6 +263,7 @@ class home extends RestController
 		$this->user->insert_global("projects", $data);
 		redirect(site_url("home/profil"));
 	}
+
 	public function apply_get($lowongan)
 	{
 		if (!$this->session->userdata('id_user')) {
@@ -224,4 +288,18 @@ class home extends RestController
 			}
 		}
 	}
+
+	public function updtProject_get(){
+		$data = [
+			'nama_project' => ($this->input->post('nama')),
+			'link_project' => ($this->input->post('link')),
+			'desc' => ($this->input->post('desc')),
+		];
+		print_r($data);
+		$this->db->where('id_project', $this->input->post('id_project'));
+		$this->db->update('projects', $data);
+		redirect(site_url("home/profil"));
+	}
+	
+
 }

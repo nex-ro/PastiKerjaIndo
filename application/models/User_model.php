@@ -66,10 +66,14 @@ class User_model extends CI_Model
       // Rows found, email exists
       return true;
     } else {
-      // No rows found, email does not exist
+      
       return false;
     }
   }
+  public function hapus_data($on ,$id,$table) {
+    $this->db->where($on, $id);
+    $this->db->delete($table);
+}
 
   function Update_user_data($data, $id)
   {
@@ -92,6 +96,13 @@ class User_model extends CI_Model
     if($lokasiL != ''){
       $this->db->where('lokasi', $lokasiL);
     }
+    $querry = $this->db->get($table);
+
+    return $querry->result();
+  }
+  function search_lowongan_company($table, $company)
+  {
+    $this->db->where('id_user',$company);
     $querry = $this->db->get($table);
 
     return $querry->result();
@@ -129,6 +140,7 @@ class User_model extends CI_Model
     $result = $query->result();
     return $result;
   }
+ 
   public function selectAll($table)
   {
     $query = $this->db->get($table);
@@ -138,6 +150,39 @@ class User_model extends CI_Model
     } else {
       return array();
     }
+  }
+  public function selectcompany($table)
+  {
+    $this->db->where('role','company');
+    $query = $this->db->get($table);
+    
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return array();
+    }
+  }
+
+  
+  function search_company($table, $cariL, $lokasiL)
+  {
+    if($cariL != ''){
+      $this->db->like('nama', $cariL, 'after');
+    }
+    if($lokasiL != ''){
+      $this->db->where('lokasi', $lokasiL);
+    }
+    $this->db->where('role', 'company');
+    $querry = $this->db->get($table);
+
+    return $querry->result();
+  }
+  function searchbytype($table, $cariL)
+  {
+    $this->db->where('type', $cariL);
+    $querry = $this->db->get($table);
+
+    return $querry->result();
   }
   public function tampiltotal($table)
   {
@@ -149,6 +194,8 @@ class User_model extends CI_Model
       return array();
     }
   }
+ 
+
   public function getWdistinct($table,$see)
   {
     $this->db->distinct($see);

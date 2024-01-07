@@ -32,16 +32,15 @@
                 <div class="form-group">
                     <div class="">
                         <select class="form-control" id="kategori" name="kategori" require>
-                            <option selected disabled>Category</option>
-                            <option value="Education">Education</option>
-                            <option value="Health ">Health </option>
-                            <option value="Business,management and administration">Business, management and administration</option>
-                            <option value="Law enforcement">Law enforcement </option>
-                            <option value="Architecture and Engineering ">Architecture and Engineering </option>
-                            <option value="Arts , culuture and entertainment">Arts , culuture and entertainment </option>
-                            <option value="Community and social services">Community and social services</option>
-                            <option value="Science and technology">Science and technology </option>
-                            <option value=" Farming, fishing and forestry">Farming, fishing and forestry</option>
+                        <option value="">All Category</option>
+							<option value="Bidang Teknologi">Bidang Teknologi</option>
+							<option value="Bidang Pendidikan">Bidang Pendidikan</option>
+							<option value="Bidang Hukum">Bidang Hukum</option>
+							<option value="Bidang Ekonomi">Bidang Ekonomi</option>
+							<option value="Bidang Seni Sastra">Bidang Seni Sastra </option>
+							<option value="Bidang Teknik dan Industry ">Bidang Teknik dan Industry </option>
+							<option value="Bidang Kesehatan">Bidang Kesehatan</option>
+							<option value="Bidang Kesehatan">Wirausaha</option>
                         </select>
                     </div>
                 </div>
