@@ -12,8 +12,9 @@ class Admin extends RestController{
   }
 
   public function index_get(){
+    $data['lowongan'] = $this->user->selectAll('lowongan');
     $this->load->view('layout/headerAdm');
-		$this->load->view('admin/main');
+		$this->load->view('admin/lowongan',$data);
 		$this->load->view('layout/footerAdm');
   }
   public function lowongan_get(){
