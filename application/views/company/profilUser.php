@@ -36,48 +36,13 @@
 </head>
 
 <body>
-    <header id="header" id="home">
-        <div class="container">
-            <div class="row align-items-center justify-content-between d-flex">
-                <div id="logo">
-                    <!-- <a href="index.html"><img src="<?= base_url('assets/img/') ?>iconPng.png" style="width: 80px; z-index: 99;" alt="" title="" /></a> -->
-                </div>
 
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-active"><a href="<?= base_url() ?>" style="color: #937cff;">Home</a></li>
-                        <li><a href="<?= base_url('index.php/job') ?>" style="color: #937cff;">Job Search</a></li>
-                        <li><a href="<?= base_url('index.php/home/company') ?>" style="color: #937cff;">Company</a></li>
-                        <li><a href="<?= base_url('index.php/home/news') ?>" style="color: #937cff;">News</a></li>
-                        <li><a href="<?= base_url('index.php/home/about') ?>" style="color: #937cff;">About us</a></li>
-                        <?php
-                        if ($this->session->userdata('email')) { ?>
-                            
-                            <?php if (null !== $this->session->userdata('profilePicture')) { ?>
-                                <li class="menu-has-children"><a href=""><img src="<?= base_url() .$personalInfo['profilePicture'] ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
-                                <?php } else { ?>
-                                <li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?>pp.png" alt="" style="width: 30px;border-radius: 50%;"></a>
-                                <?php } ?>
-                                <ul>
-                                    <li><a href="<?= site_url('home/profil') ?>">Profil</a></li>
-                                    <li><a href="<?= site_url('auth/Auth/logout') ?>" style="color: red;">Logout</a></li>
-                                </ul>
-                                </li>
-                            <?php } else { ?>
-                                <li><a class="ticker-btn" href="<?= site_url('login'); ?>">Login</a></li>
-                            <?php } ?>
-                    </ul>
-                </nav><!-- #nav-menu-container -->
-            </div>
-        </div>
-    </header><!-- #header -->
     <div class="container">
         <div class="headProfile  d-flex flex-row animate__animated  animate__fadeIn  align-items-center mb-3" style="background-color:  #937cff; border-radius: 30px; padding: 50px; overflow: hidden; margin-top: 60px;">
             <img src="" style="border-radius: 50%; margin-right: 20px;">
             <div class="captProfile" style="display: flex;flex-direction: row;">
                 <!-- <img style="position: absolute; top: 0px; right: 50px; width: 200px;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNDAiIGhlaWdodD0iMjgwIj48cGF0aCBmaWxsPSIjRTYwMjc4IiBkPSJNMTQ1LjgzNCAwaDE5NC40NDR2MTk0LjQ0NEMyMzIuODkgMTk0LjQ0NCAxNDUuODM0IDEwNy4zODkgMTQ1LjgzNCAwIi8+PC9zdmc+" alt=""> -->
                 <div class="" style="margin: 10px;">
-
                     <?php if (filter_var($personalInfo['profilePicture'], FILTER_VALIDATE_URL)) {
                     ?> <li class="menu-has-children"><a href=""><img src="<?=$personalInfo['profilePicture']?>" alt="" style="width: 100px;border-radius: 50%; border: 2px solid white;"></a>
                         <?php
@@ -85,7 +50,6 @@
                        ?> <li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?><?=$personalInfo['profilePicture']?>" alt="" style="width: 100px;border-radius: 50%;border: 2px solid white;"></a> 
                        <?php
                     } ?>
-
                 </div>
                 <div class="">
                     <h4 style="margin-top: 20px; color: white; font-size: 30px;"><?= $personalInfo['nama'] ?></h4>
@@ -100,10 +64,10 @@
                         </div>
                     </div>
 
-
+<!-- 
                     <button style="margin-right: 10px;" type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModalCenter">
                         <i class='bx bx-pencil'></i> Edit
-                    </button>
+                    </button> -->
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -116,11 +80,11 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="<?= site_url("home/UpdatePersonalInfo")?>" enctype="multipart/form-data">
+                                    <form method="POST" action="<?= site_url("home/UpdatePersonalInfo") ?>">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Profil Picture </label>
                                             <br>
-                                            <input type="file" name="pp">
+                                            <input type="file" name="profilePicture">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Full Name</label>
@@ -267,9 +231,9 @@
             } ?>
 
 
-            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#Carrier">
+            <!-- <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#Carrier">
                 <i class='bx bx-pencil'></i> Add Carrier
-            </button>
+            </button> -->
 
             <div class="modal fade" id="Carrier" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -379,9 +343,9 @@
                     </div>
                 <?php } ?>
             </div>
-            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#education">
+            <!-- <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#education">
                 <i class='bx bx-pencil'></i> Add Education
-            </button>
+            </button> -->
 
             <!-- Modal -->
             <div class="modal fade" id="education" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -429,11 +393,11 @@
             <p style="color: black; opacity: 0.7; font-size: 15px;">Tell People about the Amazing think you have do</p>
             <div class="" style="max-width: 600px; width: fit-content;">
                 <?php foreach ($project as $row) {   ?>
-                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#projectupd<?= $row->id_project ?>" style="width: 100%; text-align: left;margin-top: 10px;margin-bottom: 10px; padding: 20px; border-radius: 10px;">
+                   <a href="<?= $row->link_project ?>"> <button  type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#projectupd<?= $row->id_project ?>" style="width: 100%; text-align: left;margin-top: 10px;margin-bottom: 10px; padding: 20px; border-radius: 10px;">
                         <p style="font-size: 30px;margin: 0px;"><?= $row->nama_project ?> <i class='bx bx-pencil'></i> </p>
                         <p style="font-size: 15px;margin: 0px;"><?= $row->desc ?></p>
                         <p style="font-size: 15px;margin: 0px;"><?= $row->link_project ?></p>
-                    </button>
+                    </button></a>
                     <br>
                     <!-- Modal -->
                     <div class="modal fade" id="projectupd<?= $row->id_project ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -477,10 +441,10 @@
                 <?php } ?>
             </div>
 
-
+<!-- 
             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#project">
                 <i class='bx bx-pencil'></i> Add Project
-            </button>
+            </button> -->
 
             <!-- Modal -->
             <div class="modal fade" id="project" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

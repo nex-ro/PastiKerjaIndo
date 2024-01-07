@@ -305,8 +305,35 @@ class home extends RestController
 		$this->user->insert_global("projects", $data);
 		redirect(site_url("home/profil"));
 	}
-	public function updtProject_get()
+
+
+	public function apply_get($lowongan)
 	{
+		if (!$this->session->userdata('id_user')) {
+			redirect('home');
+		}
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$applier_id = $this->session->userdata('id_user');
+			$config['upload_path'] = 'assets/cv/';
+			$config['allowed_types'] = 'pdf|doc|docx';
+			$this->load->library('upload', $config);
+			if ($this->upload->do_upload('cv')) {
+				$cv_data = $this->upload->data();
+				$cv_path = 'assets/cv/' . $cv_data['file_name'];
+				$data = array(
+					'id_lowongan' => $lowongan,
+					'id_pengambil' => $applier_id,
+					'cv' => $cv_path,
+					'status' => "Pending"
+				);
+				$this->user->insert_global('apply', $data);
+				redirect('home');
+			}
+		}
+	}
+
+	public function updtProject_get(){
+
 		$data = [
 			'nama_project' => ($this->input->post('nama')),
 			'link_project' => ($this->input->post('link')),
@@ -317,4 +344,5 @@ class home extends RestController
 		$this->db->update('projects', $data);
 		redirect(site_url("home/profil"));
 	}
+
 }

@@ -123,7 +123,7 @@ class Auth extends RestController
                 // 'id_user' => htmlspecialchars($this->input->post('email', true)),
                 'noHp' => htmlspecialchars($this->input->post('noHP', true)),
                 'pass' => password_hash($this->input->post('pass'), PASSWORD_DEFAULT),
-                'profilePicture' => base_url('assets/img/').'pp.jpg',
+                'profilePicture' => 'pp.png',
                 'role' =>  $this->input->post('role'),
                 'lokasi'=>htmlspecialchars($this->input->post('lokasi', true)),
             ];
@@ -154,6 +154,7 @@ class Auth extends RestController
                     'role' => $user['role'],
                     'id_user' => $user['id_user'],
                     'profilePicture' => $user['profilePicture'],
+
                 ];
                 if($user['role']=='user'){
                     $this->session->set_userdata($data);
