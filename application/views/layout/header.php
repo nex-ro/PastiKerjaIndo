@@ -57,14 +57,14 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="<?= base_url() ?>">Home</a></li>
-						<li><a href="<?= base_url('index.php/job') ?>">Job Search</a></li>
+						<li><a href="<?= base_url('index.php/job') ?>">Job</a></li>
 						<li><a href="<?= base_url('index.php/home/company') ?>">Company</a></li>
 						<li><a href="<?= base_url('index.php/home/news') ?>">News</a></li>
 						<li><a href="<?= base_url('index.php/home/about') ?>">About us</a></li>
 
 						<?php
 						if ($this->session->userdata('email')) { ?>
-							<li><a href="<?= base_url('index.php/home/buatlowongan') ?>">Buat Lowongan</a></li>
+							
 							<!-- Nav Item - Alerts -->
 							<li class="nav-item dropdown no-arrow mx-1">
 								<a style="display: flex;flex-direction: column; text-align: center;" class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -100,6 +100,13 @@ class User_model extends CI_Model
 
     return $querry->result();
   }
+  function search_lowongan_company($table, $company)
+  {
+    $this->db->where('id_user',$company);
+    $querry = $this->db->get($table);
+
+    return $querry->result();
+  }
 
   public function getWhereJoin($table, $tableJoin, $on, $where)
   {
@@ -134,6 +141,17 @@ class User_model extends CI_Model
       return array();
     }
   }
+  public function selectcompany($table)
+  {
+    $this->db->where('role','company');
+    $query = $this->db->get($table);
+    
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return array();
+    }
+  }
   public function tampiltotal($table)
   {
     $query = $this->db->get($table);
@@ -144,16 +162,7 @@ class User_model extends CI_Model
       return array();
     }
   }
-  public function getWhereAll($table, $where, $id)
-  {
-    $this->db->select('*');
-    $this->db->from($table);
-    $this->db->where($where,$id);
-
-    $query = $this->db->get();
-    $result = $query->result();
-    return $result;
-  }
+ 
   public function getWdistinct($table,$see)
   {
     $this->db->distinct($see);

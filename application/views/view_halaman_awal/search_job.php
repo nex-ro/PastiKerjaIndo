@@ -11,7 +11,7 @@
 											<select name="lokasi">
 												<option  selected value="">pilih area</option>
 												<?php
-    												foreach ($lowongan as $row) {
+    												foreach ($lokasi as $row) {
 														?>
 														<option value="<?php echo $row->lokasi; ?>">
 															<?php echo $row->lokasi ?>

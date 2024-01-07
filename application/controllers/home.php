@@ -35,17 +35,33 @@ class home extends RestController
 	public function searchjob_get()
 	{
 		$data['lowongan'] = $this->user->selectAll('lowongan');
-
 		$data['search'] = $this->user->search_lowongan('lowongan', $this->input->post('cari', true), $this->input->post('lokasi', true), $this->input->post('kategori', true));
-
+		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$this->db->reset_query();
+		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$this->db->reset_query();
+		$this->load->view('layout/header');
+		$this->load->view('view_halaman_awal/search_job', $data);
+		$this->load->view('layout/footer');
+	}
+	public function searchjobcompany_get()
+	{
+		$data['lowongan'] = $this->user->selectAll('lowongan');
+		$id_user = $_GET['id'];
+		$data['search'] = $this->user->search_lowongan_company('lowongan',$id_user);
+		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$this->db->reset_query();
+		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$this->db->reset_query();
 		$this->load->view('layout/header');
 		$this->load->view('view_halaman_awal/search_job', $data);
 		$this->load->view('layout/footer');
 	}
 	public function company_get()
 	{
+		$data['company'] = $this->user->selectcompany('user');
 		$this->load->view('layout/header');
-		$this->load->view('view_halaman_awal/company');
+		$this->load->view('view_halaman_awal/company',$data);
 		$this->load->view('layout/footer');
 	}
 	public function news_get()
