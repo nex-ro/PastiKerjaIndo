@@ -1,3 +1,23 @@
+<?php if($this->session->flashdata('message')): ?>
+    <script>
+      
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "Signed in successfully"
+        });
+    </script>
+<?php endif; ?>
 <div class="container-md p-2">
     <div class="d-flex justify-content-between" style="margin-bottom: 30px;">
         <h1 class="h3 mb-0 text-gray-800">Data Pendaftar <?= $pekerjaan['lowongan'] ?></h1>
@@ -30,8 +50,8 @@
                         <td><?= $infoPelamar['nama'] ?></td>
                         <td><?= $infoPelamar['email'] ?></td>
                         <td><?= $row->status ?></td>
-                        <td><a href=""><button type="button" class="btn btn-info"><i style="font-size: 20px;" class='bx bxs-file'></i></button></a></td>
-                        <td><a href="<?=site_url('Company/view_profil')?>?id=<?= $infoPelamar['id_user'] ?>"><button type="button" class="btn btn-info"><i style="font-size: 20px;" class='bx bxs-user-rectangle'></i></button></a></td>
+                        <td><a target="_blank" href="<?=base_url('').$row->cv?>"><button type="button" class="btn btn-info"><i style="font-size: 20px;" class='bx bxs-file'></i></button></a></td>
+                        <td><a target="_blank" href="<?=site_url('Company/view_profil')?>?id=<?= $infoPelamar['id_user'] ?>"><button type="button" class="btn btn-info"><i style="font-size: 20px;" class='bx bxs-user-rectangle'></i></button></a></td>
                         <td><a target="_blank" href="https://wa.me/<?= $infoPelamar['noHp'] ?>"><button type="button" class="btn btn-info"><i style="font-size: 20px;" class='bx bxs-message'></i></button></a></td>
                         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal<?= $row->id_apply ?>">Action</button></td>
                     </tr>
@@ -44,10 +64,10 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="<?=site_url()?>" method="post">
+                                <form action="<?=site_url('Company/updtApply')?>" method="post">
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <input type="text" name="nama" class="form-control form-control-user" id="exampleInputEmail" placeholder="requiement" value="<?= $infoPelamar['nama'] ?>">
+                                            <input disabled type="text" name="nama" class="form-control form-control-user" id="exampleInputEmail" placeholder="requiement" value="<?= $infoPelamar['nama'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <select class="form-control" id="status" name="status">
@@ -57,7 +77,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" hidden name="id" class="form-control form-control-user" id="exampleInputEmail" placeholder="requiement" value="<?= $row->id_apply ?>">
+                                            <input type="text" hidden name="id_apply" class="form-control form-control-user" id="exampleInputEmail" placeholder="requiement" value="<?= $row->id_apply ?>">
                                         </div>
                                     </div>
                                     <div class="modal-footer">

@@ -1,6 +1,27 @@
 <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4"> -->
 <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
 <!-- </div> -->
+
+<?php if($this->session->flashdata('message')): ?>
+    <script>
+      
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "Signed in successfully"
+        });
+    </script>
+<?php endif; ?>
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
   <div class="input-group">
     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -14,7 +35,7 @@
 <div class="container-md p-2">
   <div class="d-flex justify-content-between">
     <h1 class="h3 mb-0 text-gray-800">Data Lowongan</h1>
-    <a href="<?=site_url('company/buatLowongan')?>"><button class='btn btn-primary mb-3 mt-3 d-flex justify-content-end'>Tambah Data</button></a>
+    <a href="<?= site_url('company/buatLowongan') ?>"><button class='btn btn-primary mb-3 mt-3 d-flex justify-content-end'>Tambah Data</button></a>
   </div>
   <table id="example" class="table table-striped" style="width:100%">
     <thead>
@@ -35,6 +56,15 @@
       $no = 0;
       foreach ($lowongan as $row) {
         $no = $no + 1;
+        // Di dalam model atau controller
+        
+
+        $this->db->where('id_lowongan', $row->id_lowongan);
+        $query = $this->db->get('apply');
+        $count = $query->num_rows();
+
+        
+
       ?>
         <tr>
           <td><?php echo $no;  ?></td>
@@ -43,11 +73,11 @@
           <td><?php echo $row->kategori ?></td>
           <td><?php echo $row->lokasi ?></td>
           <td><?php echo $row->status ?></td>
-          <td>1</td>
+          <td><?=$count?></td>
           <td>
-            <a href="<?=site_url('Company/applier')?>?id=<?=$row->id_lowongan?>"><button type='button' class='btn btn-success'>Check Applier</button></a>
+            <a href="<?= site_url('Company/applier') ?>?id=<?= $row->id_lowongan ?>"><button type='button' class='btn btn-success'>Check Applier</button></a>
             <a><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter<?= $row->id_lowongan ?>">Edit</button></a>
-            <a href="<?=site_url('Company/delateLowongan')?>?id=<?=$row->id_lowongan?>"><button type='button' class='btn btn-danger'>Hapus</button></a>
+            <a href="<?= site_url('Company/delateLowongan') ?>?id=<?= $row->id_lowongan ?>"><button type='button' class='btn btn-danger'>Hapus</button></a>
           </td>
         </tr>
 
@@ -99,7 +129,7 @@
                   <div class="form-group row">
                     <div class="col-sm-6">
                       <select class="form-control" id="type" name="type" require>
-                        <option selected value="<?=$row->type?>"> <?= $row->type ?></option>
+                        <option selected value="<?= $row->type ?>"> <?= $row->type ?></option>
                         <option value="Fulltime">Full Time</option>
                         <option value="Part time">Part Time</option>
                         <option value="Intern">Intern</option>
@@ -146,7 +176,7 @@
 
     <tfoot>
       <tr>
-      <th>#</th>
+        <th>#</th>
         <th>Company</th>
         <th>Job title</th>
         <th>category</th>

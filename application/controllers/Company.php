@@ -19,7 +19,7 @@ class Company extends RestController
   {
     $data['result'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
     $data['lowongan'] = $this->user->getWhereAll('lowongan', 'id_user',  $this->session->userdata('id_user'),);
-    $this->load->view('layout/headerCompany',$data);
+    $this->load->view('layout/headerCompany', $data);
     $this->load->view('company/listLowongan', $data);
     $this->load->view('layout/footerAdm');
   }
@@ -39,7 +39,7 @@ class Company extends RestController
       'required' => 'Please enter the Location',
     ]);
     if ($this->form_validation->run() == false) {
-      $this->load->view('layout/headerCompany',$data);
+      $this->load->view('layout/headerCompany', $data);
       $this->load->view('company/vacany');
       $this->load->view('layout/footerAdm');
     } else {
@@ -63,10 +63,10 @@ class Company extends RestController
 
   public function profil_get()
   {
-     
-    
+
+
     $data['result'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
-    $this->load->view('layout/headerCompany',$data);
+    $this->load->view('layout/headerCompany', $data);
     $this->load->view('company/profil', $data);
   }
   public function editLowongan_get()
@@ -83,6 +83,7 @@ class Company extends RestController
       'desc' => htmlspecialchars($this->input->post('desc'), true),
     ];
     $this->db->where('id_lowongan', $this->input->post('id_lowongan'));
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Lowongan Terbuat</div>');
     $this->db->update('lowongan', $data);
     redirect(site_url("Company"));
   }
@@ -91,6 +92,7 @@ class Company extends RestController
     $id = $_GET['id'];
     $this->user->hapus_data('id_lowongan', $id, 'lowongan');
     redirect(site_url("Company"));
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Lowongan Terbuat</div>');
   }
   public function applier_get()
   {
@@ -98,7 +100,7 @@ class Company extends RestController
     $id = $_GET['id'];
     $data['pekerjaan'] = $this->db->get_where('lowongan', array('id_lowongan' => $id))->row_array();
     $data['pelamar'] = $this->user->getWhereAll('apply', 'id_lowongan', $id);
-    $this->load->view('layout/headerCompany',$data);
+    $this->load->view('layout/headerCompany', $data);
     $this->load->view('company/applier', $data);
     $this->load->view('layout/footerAdm');
   }
@@ -116,12 +118,12 @@ class Company extends RestController
   {
     $data['result'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 
-    $this->load->view('layout/headerCompany',$data);
+    $this->load->view('layout/headerCompany', $data);
     $this->load->view('company/profilEdit', $data);
   }
   public function update_get()
-  { 
-    
+  {
+
     $targetDirectory = './assets/img/';
     $targetFile = $targetDirectory . basename($_FILES["pp"]["name"]);
 
@@ -129,7 +131,7 @@ class Company extends RestController
       if (move_uploaded_file($_FILES["pp"]["tmp_name"], $targetFile)) {
         // File berhasil diunggah, tambahkan logika Anda di sini
         $data = [
-          'profilePicture' => basename($_FILES["pp"]["name"]),// Simpan path file ke dalam database
+          'profilePicture' => basename($_FILES["pp"]["name"]), // Simpan path file ke dalam database
           'nama' => htmlspecialchars($this->input->post('nama', true)),
           'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
           'noHp' => htmlspecialchars($this->input->post('noHp', true)),
@@ -158,6 +160,17 @@ class Company extends RestController
       $this->db->update('user', $data);
       redirect(site_url("home/profil"));
     }
+  }
+  public function updtApply_get()
+  {
+    $data = [
+      'status' => htmlspecialchars($this->input->post('status', true)),
+    ];
+    $this->db->where('id_apply', $this->input->post('id_apply'));
+    $this->db->update('apply', $data);
+    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong Password!</div>');
+    redirect(site_url('Company/applier')."?id=".$this->input->post('id_apply'));
+    
   }
 }
 
