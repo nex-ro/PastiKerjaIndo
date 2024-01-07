@@ -52,9 +52,9 @@
                         <li><a href="<?= base_url('index.php/home/about') ?>" style="color: #937cff;">About us</a></li>
                         <?php
                         if ($this->session->userdata('email')) { ?>
-                            <li><a href="<?= base_url('index.php/home/buatlowongan') ?>" style="color: #937cff;">Buat Lowongan</a></li>
+                            
                             <?php if (null !== $this->session->userdata('profilePicture')) { ?>
-                                <li class="menu-has-children"><a href=""><img src="<?= $this->session->userdata('profilePicture') ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
+                                <li class="menu-has-children"><a href=""><img src="<?= base_url() .$personalInfo['profilePicture'] ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
                                 <?php } else { ?>
                                 <li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?>pp.png" alt="" style="width: 30px;border-radius: 50%;"></a>
                                 <?php } ?>
@@ -77,6 +77,7 @@
             <div class="captProfile" style="display: flex;flex-direction: row;">
                 <!-- <img style="position: absolute; top: 0px; right: 50px; width: 200px;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzNDAiIGhlaWdodD0iMjgwIj48cGF0aCBmaWxsPSIjRTYwMjc4IiBkPSJNMTQ1LjgzNCAwaDE5NC40NDR2MTk0LjQ0NEMyMzIuODkgMTk0LjQ0NCAxNDUuODM0IDEwNy4zODkgMTQ1LjgzNCAwIi8+PC9zdmc+" alt=""> -->
                 <div class="" style="margin: 10px;">
+
                     <?php if (filter_var($personalInfo['profilePicture'], FILTER_VALIDATE_URL)) {
                     ?> <li class="menu-has-children"><a href=""><img src="<?=$personalInfo['profilePicture']?>" alt="" style="width: 100px;border-radius: 50%; border: 2px solid white;"></a>
                         <?php
@@ -84,6 +85,7 @@
                        ?> <li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?><?=$personalInfo['profilePicture']?>" alt="" style="width: 100px;border-radius: 50%;border: 2px solid white;"></a> 
                        <?php
                     } ?>
+
                 </div>
                 <div class="">
                     <h4 style="margin-top: 20px; color: white; font-size: 30px;"><?= $personalInfo['nama'] ?></h4>
@@ -114,11 +116,11 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="<?= site_url("home/UpdatePersonalInfo") ?>">
+                                    <form method="POST" action="<?= site_url("home/UpdatePersonalInfo")?>" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Profil Picture </label>
                                             <br>
-                                            <input type="file" name="profilePicture">
+                                            <input type="file" name="pp">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Full Name</label>

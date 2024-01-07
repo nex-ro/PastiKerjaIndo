@@ -40,7 +40,7 @@
             ?>
                 <div class="col-lg-6">
                     <div class="submit-left" style="margin-top: 10px;">
-                        <img src="<?= base_url($row->profilePicture) ?>" alt="Profile Picture Company">
+                        <img src="" alt="">
                         <h4><?php echo $row->nama; ?></h4>
                         <p style="margin: 0px;">
                             <?php echo $row->desc; ?>

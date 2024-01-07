@@ -16,132 +16,146 @@ class home extends RestController
 	public function index_get()
 	{
 		$data['lowongan'] = $this->user->selectAll('lowongan');
-		$this->load->view('layout/header');
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/index', $data);
 		$this->load->view('layout/footer');
 	}
 	public function job_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$this->db->reset_query();
 		$data['lokasi'] = $this->user->getWdistinct('lowongan', 'lokasi');
 		$this->db->reset_query();
 		$data['kategori'] = $this->user->getWdistinct('lowongan', 'kategori');
 		$this->db->reset_query();
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/job', $data);
 		$this->load->view('layout/footer');
 	}
 	public function searchjob_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$data['search'] = $this->user->search_lowongan('lowongan', $this->input->post('cari', true), $this->input->post('lokasi', true), $this->input->post('kategori', true));
-		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$data['lokasi'] = $this->user->getWdistinct('lowongan', 'lokasi');
 		$this->db->reset_query();
-		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$data['kategori'] = $this->user->getWdistinct('lowongan', 'kategori');
 		$this->db->reset_query();
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/search_job', $data);
 		$this->load->view('layout/footer');
 	}
 	public function searchjoblokasi_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$lokasi = $_GET['lokasi'];
-		$data['search'] = $this->user->search_lowongan('lowongan','',$lokasi,'');
-		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$data['search'] = $this->user->search_lowongan('lowongan', '', $lokasi, '');
+		$data['lokasi'] = $this->user->getWdistinct('lowongan', 'lokasi');
 		$this->db->reset_query();
-		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$data['kategori'] = $this->user->getWdistinct('lowongan', 'kategori');
 		$this->db->reset_query();
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/search_job', $data);
 		$this->load->view('layout/footer');
 	}
 	public function searchjobtype_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$type = $_GET['type'];
-		$data['search'] = $this->user->searchbytype('lowongan',$type);
-		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$data['search'] = $this->user->searchbytype('lowongan', $type);
+		$data['lokasi'] = $this->user->getWdistinct('lowongan', 'lokasi');
 		$this->db->reset_query();
-		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$data['kategori'] = $this->user->getWdistinct('lowongan', 'kategori');
 		$this->db->reset_query();
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/search_job', $data);
 		$this->load->view('layout/footer');
 	}
 	public function searchjobkategori_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$kategori = $_GET['kategori'];
-		$data['search'] = $this->user->search_lowongan('lowongan','','',$kategori);
-		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$data['search'] = $this->user->search_lowongan('lowongan', '', '', $kategori);
+		$data['lokasi'] = $this->user->getWdistinct('lowongan', 'lokasi');
 		$this->db->reset_query();
-		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$data['kategori'] = $this->user->getWdistinct('lowongan', 'kategori');
 		$this->db->reset_query();
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/search_job', $data);
 		$this->load->view('layout/footer');
 	}
-	
+
 	public function searchjobcompany_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$id_user = $_GET['id'];
-		$data['search'] = $this->user->search_lowongan_company('lowongan',$id_user);
-		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$data['search'] = $this->user->search_lowongan_company('lowongan', $id_user);
+		$data['lokasi'] = $this->user->getWdistinct('lowongan', 'lokasi');
 		$this->db->reset_query();
-		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$data['kategori'] = $this->user->getWdistinct('lowongan', 'kategori');
 		$this->db->reset_query();
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/search_job', $data);
 		$this->load->view('layout/footer');
 	}
 	public function searchprofilecompany_get()
 	{
-		$data['company'] = $this->user->search_company('user',$this->input->post('search', true),'');	
-		$this->load->view('layout/header');
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
+		$data['company'] = $this->user->search_company('user', $this->input->post('search', true), '');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/search_company', $data);
 		$this->load->view('layout/footer');
 	}
 	public function company_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['company'] = $this->user->selectcompany('user');
-		$this->load->view('layout/header');
-		$this->load->view('view_halaman_awal/company',$data);
+		$this->load->view('layout/header',$data);
+		$this->load->view('view_halaman_awal/company', $data);
 		$this->load->view('layout/footer');
 	}
 	public function news_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		// $this->load->view('welcome_message');
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/news');
 		$this->load->view('layout/footer');
 	}
 	public function newsOne_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		// $this->load->view('welcome_message');
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/news_one');
 		$this->load->view('layout/footer');
 	}
 	public function newsDetail_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		// $this->load->view('welcome_message');
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/job');
 		$this->load->view('layout/footer');
 	}
 	public function about_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		// $this->load->view('welcome_message');
-		$this->load->view('layout/header');
+		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/about');
 		$this->load->view('layout/footer');
 	}
 
 	function buatlowongan_get()
 	{
+		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		if (!$this->session->userdata('email')) {
 			redirect('home');
 		}
@@ -155,7 +169,7 @@ class home extends RestController
 			'required' => 'Please enter the Location',
 		]);
 		if ($this->form_validation->run() == false) {
-			$this->load->view('layout/header');
+			$this->load->view('layout/header',$data);
 			$this->load->view('view_halaman_awal/buat_lowongan');
 			$this->load->view('layout/footer');
 		} else {
@@ -175,6 +189,8 @@ class home extends RestController
 	}
 	public function profil_get()
 	{
+		
+		
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['carrier'] = $this->user->getWhereAll('experience', 'id_user', $this->session->userdata('id_user'));
 		$data['pendidikan'] = $this->user->getWhereAll('pendidikan', 'id_user', $this->session->userdata('id_user'));
@@ -183,19 +199,46 @@ class home extends RestController
 		$this->load->view('view_halaman_awal/profil', $data);
 		$this->load->view('layout/footer');
 	}
-	public function UpdatePersonalInfo_get()
-	{
-		$data = [
-			'profilePicture' => htmlspecialchars($this->input->post('profilePicture', true)),
-			'nama' => htmlspecialchars($this->input->post('nama', true)),
-			'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
-			'noHp' => htmlspecialchars($this->input->post('noHp'), true),
-		];
-		$this->user->Update_user_data($data, $this->input->post('id_user'));
-		redirect(site_url("home/profil"));
+	public function UpdatePersonalInfo_get() {
+		$targetDirectory = './assets/profilepicture/';
+		$targetFile = $targetDirectory . basename($_FILES["pp"]["name"]);
+		
+		if (!empty($_FILES["pp"]["name"])) {
+			if (move_uploaded_file($_FILES["pp"]["tmp_name"], $targetFile)) {
+				// File berhasil diunggah, tambahkan logika Anda di sini
+				$data = [
+					'profilePicture' => $targetFile, // Simpan path file ke dalam database
+					'nama' => htmlspecialchars($this->input->post('nama', true)),
+					'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
+					'noHp' => htmlspecialchars($this->input->post('noHp'), true),
+				];
+				$this->user->Update_user_data($data, $this->input->post('id_user'));
+				redirect(site_url("home/profil"));
+			} else {
+				$data = [
+					'nama' => htmlspecialchars($this->input->post('nama', true)),
+					'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
+					'noHp' => htmlspecialchars($this->input->post('noHp'), true),
+				];
+				$this->user->Update_user_data($data, $this->input->post('id_user'));
+				echo 'Tidak dapat menunnggah foto';
+				redirect(site_url("home/profil"));
+			}
+		} else {
+			$data = [
+				'nama' => htmlspecialchars($this->input->post('nama', true)),
+				'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
+				'noHp' => htmlspecialchars($this->input->post('noHp'), true),
+			];
+			$this->user->Update_user_data($data, $this->input->post('id_user'));
+			echo $targetFile;
+			// redirect(site_url("home/profil"));
+		}
 	}
+	
 	public function UpdateDesc_get()
 	{
+		
 		$data = [
 			'desc' => $this->input->post('desc'),
 		];
@@ -250,7 +293,6 @@ class home extends RestController
 		];
 		$this->user->insert_global("pendidikan", $data);
 		redirect(site_url("home/profil"));
-
 	}
 	public function ProjectAdd_get()
 	{
@@ -263,6 +305,7 @@ class home extends RestController
 		$this->user->insert_global("projects", $data);
 		redirect(site_url("home/profil"));
 	}
+
 
 	public function apply_get($lowongan)
 	{
@@ -290,6 +333,7 @@ class home extends RestController
 	}
 
 	public function updtProject_get(){
+
 		$data = [
 			'nama_project' => ($this->input->post('nama')),
 			'link_project' => ($this->input->post('link')),
@@ -300,6 +344,5 @@ class home extends RestController
 		$this->db->update('projects', $data);
 		redirect(site_url("home/profil"));
 	}
-	
 
 }

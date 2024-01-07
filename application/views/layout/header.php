@@ -182,6 +182,7 @@
 								<li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?><?=$this->session->userdata('profilePicture') ?>" alt="" style="width: 30px;border-radius: 50%;border: 2px solid white;"></a>
 								<?php
 							} ?>
+
 								<ul>
 									<li><a href="<?= site_url('home/profil') ?>">Profil</a></li>
 									<li><a href="<?= site_url('auth/Auth/logout') ?>" style="color: red;">Logout</a></li>
