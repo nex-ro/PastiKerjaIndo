@@ -47,6 +47,25 @@
 	</div>
 </div>
 <!-- Start post Area -->
+<?php if ($this->session->flashdata('message')) : ?>
+	<script>
+		const Toast = Swal.mixin({
+			toast: true,
+			position: "top-end",
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.onmouseenter = Swal.stopTimer;
+				toast.onmouseleave = Swal.resumeTimer;
+			}
+		});
+		Toast.fire({
+			icon: "success",
+			title: "Signed in successfully"
+		});
+	</script>
+<?php endif; ?>
 <section class="post-area section-gap">
 	<div class="container">
 		<div class="row justify-content-center d-flex">
@@ -160,17 +179,17 @@
 						</button>
 					</div>
 					<form action="<?= base_url('index.php/home/apply/' . $row->id_lowongan); ?>" method="post" enctype="multipart/form-data">
-					<div class="modal-body">
-						<label for="cv">Upload CV:</label>
-						<input type="file" name="cv" accept=".pdf, .doc, .docx">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Save changes</button>
-					</div>
+						<div class="modal-body">
+							<label for="cv">Upload CV:</label>
+							<input type="file" name="cv" accept=".pdf, .doc, .docx">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Save changes</button>
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-	<?php endforeach; ?>
+	<?php endforeach ?>
 </section>

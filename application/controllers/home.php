@@ -324,8 +324,9 @@ class home extends RestController
 					'cv' => $cv_path,
 					'status' => "waiting"
 				);
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong Password!</div>');
 				$this->user->insert_global('apply', $data);
-				redirect('home');
+				redirect('home/job');
 			}
 		}
 	}
