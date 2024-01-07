@@ -24,9 +24,9 @@ class home extends RestController
 	{
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$this->db->reset_query();
-		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$data['lokasi'] = $this->user->getWdistinct('lowongan', 'lokasi');
 		$this->db->reset_query();
-		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$data['kategori'] = $this->user->getWdistinct('lowongan', 'kategori');
 		$this->db->reset_query();
 		$this->load->view('layout/header');
 		$this->load->view('view_halaman_awal/job', $data);
@@ -165,7 +165,8 @@ class home extends RestController
 		$this->db->update('experience', $data);
 		redirect(site_url("home/profil"));
 	}
-	public function editEdu_get(){
+	public function editEdu_get()
+	{
 		$data = [
 			'nama_pendidikan' => ($this->input->post('kampus')),
 			'gelar' => ($this->input->post('gelar')),
@@ -176,7 +177,8 @@ class home extends RestController
 		$this->db->update('pendidikan', $data);
 		redirect(site_url("home/profil"));
 	}
-	public function educationAdd_get(){
+	public function educationAdd_get()
+	{
 		$data = [
 			'nama_pendidikan' => ($this->input->post('kampus')),
 			'gelar' => ($this->input->post('gelar')),
@@ -187,7 +189,8 @@ class home extends RestController
 		redirect(site_url("home/profil"));
 
 	}
-	public function ProjectAdd_get(){
+	public function ProjectAdd_get()
+	{
 		$data = [
 			'nama_project' => ($this->input->post('nama')),
 			'link_project' => ($this->input->post('link')),
@@ -196,5 +199,53 @@ class home extends RestController
 		];
 		$this->user->insert_global("projects", $data);
 		redirect(site_url("home/profil"));
+	}
+	public function apply_get($lowongan)
+	{
+		if (!$this->session->userdata('id_user')) {
+			redirect('home');
+		}
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$applier_id = $this->session->userdata('id_user');
+			$config['upload_path'] = 'assets/cv/';
+			$config['allowed_types'] = 'pdf|doc|docx';
+			$this->load->library('upload', $config);
+			if ($this->upload->do_upload('cv')) {
+				$cv_data = $this->upload->data();
+				$cv_path = 'assets/cv/' . $cv_data['file_name'];
+				$data = array(
+					'id_lowongan' => $lowongan,
+					'id_pengambil' => $applier_id,
+					'cv' => $cv_path,
+					'status' => "Pending"
+				);
+				$this->user->insert_global('apply', $data);
+				redirect('home');
+			}
+		}
+	}
+	public function updateApplicationStatus()
+	{
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$applicationId = $this->input->post('id_apply');
+			$status = $this->input->post('status');
+			$description = $this->input->post('description');
+			$data = array(
+				'status' => $status,
+				'description' => $description
+			);
+			$this->db->where('id_apply', $applicationId);
+			$this->db->update('apply', $data);
+				$notifdata = array(
+				'id_apply' => $applicationId,
+				'status' => $status,
+				'description' => $description
+			);
+			$this->db->insert('notif', $notifdata);
+	
+			echo "Application status updated successfully.";
+		} else {
+			show_404(); // Invalid request
+		}
 	}
 }
