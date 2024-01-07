@@ -188,9 +188,7 @@ class home extends RestController
 		}
 	}
 	public function profil_get()
-	{
-		
-		
+	{	
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['carrier'] = $this->user->getWhereAll('experience', 'id_user', $this->session->userdata('id_user'));
 		$data['pendidikan'] = $this->user->getWhereAll('pendidikan', 'id_user', $this->session->userdata('id_user'));
@@ -200,14 +198,14 @@ class home extends RestController
 		$this->load->view('layout/footer');
 	}
 	public function UpdatePersonalInfo_get() {
-		$targetDirectory = './assets/profilepicture/';
+		$targetDirectory = './assets/img/';
 		$targetFile = $targetDirectory . basename($_FILES["pp"]["name"]);
 		
 		if (!empty($_FILES["pp"]["name"])) {
 			if (move_uploaded_file($_FILES["pp"]["tmp_name"], $targetFile)) {
 				// File berhasil diunggah, tambahkan logika Anda di sini
 				$data = [
-					'profilePicture' => $targetFile, // Simpan path file ke dalam database
+					'profilePicture' =>  basename($_FILES["pp"]["name"]), // Simpan path file ke dalam database
 					'nama' => htmlspecialchars($this->input->post('nama', true)),
 					'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
 					'noHp' => htmlspecialchars($this->input->post('noHp'), true),
@@ -324,16 +322,14 @@ class home extends RestController
 					'id_lowongan' => $lowongan,
 					'id_pengambil' => $applier_id,
 					'cv' => $cv_path,
-					'status' => "Pending"
+					'status' => "waiting"
 				);
 				$this->user->insert_global('apply', $data);
 				redirect('home');
 			}
 		}
 	}
-
 	public function updtProject_get(){
-
 		$data = [
 			'nama_project' => ($this->input->post('nama')),
 			'link_project' => ($this->input->post('link')),
