@@ -5,11 +5,17 @@
         
     <div class="" style="display: flex;justify-content: center;align-items: center;">
         <div class="" style="width: 80%;">
-            <form method="POST" action="<?=site_url('company/update')?>" >
+            <form method="POST" action="<?=site_url('company/update')?>" enctype="multipart/form-data" >
                 <div class="form-group">
                     <div class="form-group">
                         <input type="text" name="nama" class="form-control form-control-user" id="exampleFirstName" placeholder="Job Title" value="<?= $result['nama']?>">
                     </div>
+                    
+                    <label for="">Profile Picture Company</label>
+                    <div class="form-group">
+                    <input type="file" name="pp">
+                    </div>
+                    
                 </div>
                 <div class="form-group">
                     <input type="text" name="lokasi" class="form-control form-control-user" id="exampleInputEmail" placeholder="requiement" value="<?= $result['lokasi'] ?>">

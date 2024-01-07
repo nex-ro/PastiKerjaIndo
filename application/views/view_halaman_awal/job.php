@@ -33,7 +33,7 @@
 							<option value="Bidang Seni Sastra">Bidang Seni Sastra </option>
 							<option value="Bidang Teknik dan Industry ">Bidang Teknik dan Industry </option>
 							<option value="Bidang Kesehatan">Bidang Kesehatan</option>
-							<option value="Bidang Kesehatan">Wirausaha</option>
+							<option value="Wirausaha">Wirausaha</option>
 						</select>
 					</div>
 				</div>
@@ -134,51 +134,5 @@
 			</div>
 		</div>
 	</div>
-</section>
-<!-- Start post Area -->
-<section class="post-area section-gap">
-   <div class="container">
-      <div class="row justify-content-center d-flex">
-         <div class="col-lg-8 post-list">
-            <!-- Your job listing loop -->
-            <?php foreach ($lowongan as $row) : ?>
-               <div class="single-post d-flex flex-row">
-                  <!-- ... rest of your job listing code ... -->
-                  <ul class="btns">
-                     <li><a href="#"> <?php echo $row->kategori ?></a></li>
-                     <li><a href="#" data-toggle="modal" data-target="#applyModal_<?php echo $row->id_lowongan; ?>">Apply</a></li>
-                  </ul>
-               </div>
-            <?php endforeach; ?>
-            <!-- End of job listing loop -->
-
-            <a class="text-uppercase loadmore-btn mx-auto d-block" href="category.html">Load More job Posts</a>
-         </div>
-         <div class="col-lg-4 sidebar">
-            <!-- ... rest of your sidebar code ... -->
-         </div>
-      </div>
-   </div>
-   <?php foreach ($lowongan as $row) : ?>
-      <div class="modal fade" id="applyModal_<?php echo $row->id_lowongan; ?>" tabindex="-1" role="dialog" aria-labelledby="applyModalLabel" aria-hidden="true">
-         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="applyModalLabel">Apply for Job: <?php echo $row->lowongan ?></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-               <div class="modal-body">
-                  <form action="<?= base_url('index.php/home/apply/' . $row->id_lowongan); ?>" method="post" enctype="multipart/form-data">
-                     <label for="cv">Upload CV:</label>
-                     <input type="file" name="cv" accept=".pdf, .doc, .docx">
-                     <button type="submit" class="btn btn-primary">Apply</button>
-                  </form>
-               </div>
-            </div>
-         </div>
-      </div>
-   <?php endforeach; ?>
 </section>
 

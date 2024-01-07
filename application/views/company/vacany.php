@@ -38,9 +38,9 @@
 							<option value="Bidang Hukum">Bidang Hukum</option>
 							<option value="Bidang Ekonomi">Bidang Ekonomi</option>
 							<option value="Bidang Seni Sastra">Bidang Seni Sastra </option>
-							<option value="Bidang Teknik dan Industry ">Bidang Teknik dan Industry </option>
+							<option value="Bidang Teknik dan Industry">Bidang Teknik dan Industry </option>
 							<option value="Bidang Kesehatan">Bidang Kesehatan</option>
-							<option value="Bidang Kesehatan">Wirausaha</option>
+							<option value="Wirausaha">Wirausaha</option>
                         </select>
                     </div>
                 </div>

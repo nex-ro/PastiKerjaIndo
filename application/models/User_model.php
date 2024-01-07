@@ -198,7 +198,8 @@ class User_model extends CI_Model
 
   public function getWdistinct($table,$see)
   {
-    $this->db->distinct($see);
+    $this->db->distinct();
+    $this->db->select($see);
     $query = $this->db->get($table);
     $result = $query->result();
     return $result;
