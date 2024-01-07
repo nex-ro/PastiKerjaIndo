@@ -153,6 +153,7 @@ class Auth extends RestController
                     'email' => $user['email'],
                     'role' => $user['role'],
                     'id_user' => $user['id_user'],
+                    'profilePicture' => $user['profilePicture'],
                 ];
                 if($user['role']=='user'){
                     $this->session->set_userdata($data);
