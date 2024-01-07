@@ -83,13 +83,15 @@ class User_model extends CI_Model
   }
   function search_lowongan($table, $cariL, $lokasiL, $kategoriL)
   {
-    echo $cariL;
-    $this->db->like('lowongan', $cariL, 'after');
+    if($cariL != ''){
+      $this->db->like('lowongan', $cariL, 'after');
+    }
     if ($kategoriL != '') {
       $this->db->where('kategori', $kategoriL);
     }
-    $this->db->where('lokasi', $lokasiL);
-
+    if($lokasiL != ''){
+      $this->db->where('lokasi', $lokasiL);
+    }
     $querry = $this->db->get($table);
 
     return $querry->result();
@@ -137,7 +139,38 @@ class User_model extends CI_Model
       return array();
     }
   }
+  public function tampiltotal($table)
+  {
+    $query = $this->db->get($table);
+
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return array();
+    }
+  }
+  public function getWhereAll($table, $where, $id)
+  {
+    $this->db->select('*');
+    $this->db->from($table);
+    $this->db->where($where,$id);
+
+    $query = $this->db->get();
+    $result = $query->result();
+    return $result;
+  }
+  public function getWdistinct($table,$see)
+  {
+    $this->db->distinct($see);
+    $query = $this->db->get($table);
+    $result = $query->result();
+    return $result;
+  }
+
 }
+
+
+
 
 /* End of file User_model_model.php */
 /* Location: ./application/models/User_model_model.php */

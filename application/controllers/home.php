@@ -23,6 +23,11 @@ class home extends RestController
 	public function job_get()
 	{
 		$data['lowongan'] = $this->user->selectAll('lowongan');
+		$this->db->reset_query();
+		$data['lokasi'] = $this->user->getWdistinct('lowongan','lokasi');
+		$this->db->reset_query();
+		$data['kategori'] = $this->user->getWdistinct('lowongan','kategori');
+		$this->db->reset_query();
 		$this->load->view('layout/header');
 		$this->load->view('view_halaman_awal/job', $data);
 		$this->load->view('layout/footer');
@@ -86,9 +91,6 @@ class home extends RestController
 		$this->form_validation->set_rules('lokasi', 'lokasi', 'required|trim', [
 			'required' => 'Please enter the Location',
 		]);
-		$this->form_validation->set_rules('kategori', 'kategori', 'required|trim', [
-			'required' => 'Please enter the Category',
-		]);
 		if ($this->form_validation->run() == false) {
 			$this->load->view('layout/header');
 			$this->load->view('view_halaman_awal/buat_lowongan');
@@ -99,6 +101,7 @@ class home extends RestController
 				'requirement' => htmlspecialchars($this->input->post('requirement', true)),
 				'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
 				'kategori' => htmlspecialchars($this->input->post('kategori'), true),
+				'type' => htmlspecialchars($this->input->post('type'), true),
 				'status' => htmlspecialchars($this->input->post('status'), true),
 				'id_user' => $this->session->userdata('id_user'),
 			];

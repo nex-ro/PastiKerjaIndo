@@ -32,12 +32,16 @@
 									</div>
 									<div class="col-lg-3 form-cols">
 										<div class="default-select" id="default-selects2">
-											<select name="kategori">
+										<select name="kategori">
 												<option value="">All Category</option>
-												<option value="2">Medical</option>
-												<option value="3">Technology</option>
-												<option value="4">Goverment</option>
-												<option value="5">Development</option>
+												<option value="Bidang Teknologi">Bidang Teknologi</option>
+												<option value="Bidang Pendidikan">Bidang Pendidikan</option>
+												<option value="Bidang Hukum">Bidang Hukum</option>
+												<option value="Bidang Ekonomi">Bidang Ekonomi</option>
+												<option value="Bidang Seni Sastra">Bidang Seni Sastra </option>
+												<option value="Bidang Teknik dan Industry ">Bidang Teknik dan Industry </option>
+												<option value="Bidang Kesehatan">Bidang Kesehatan</option>
+												<option value="Bidang Kesehatan">Wirausaha</option>
 											</select>
 										</div>										
 									</div>
