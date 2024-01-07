@@ -33,7 +33,7 @@
 							<option value="Bidang Seni Sastra">Bidang Seni Sastra </option>
 							<option value="Bidang Teknik dan Industry ">Bidang Teknik dan Industry </option>
 							<option value="Bidang Kesehatan">Bidang Kesehatan</option>
-							<option value="Bidang Kesehatan">Wirausaha</option>
+							<option value="Wirausaha">Wirausaha</option>
 						</select>
 					</div>
 				</div>
@@ -138,10 +138,12 @@
 			</div>
 		</div>
 </section>
+
 <!-- Start post Area -->
 <section class="post-area section-gap">
 	<div class="container">
 		<div class="row justify-content-center d-flex">
+
 
 			<div class="col-lg-4 sidebar">
 			</div>

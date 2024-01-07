@@ -100,92 +100,7 @@
 			</section>
 			<!-- End features Area -->
 			<!-- Start popular-post Area -->
-<section class="popular-post-area pt-100">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="active-popular-post-carusel">
-							<div class="single-popular-post d-flex flex-row">
-								<div class="thumb">
-									<img class="img-fluid" src="<?=base_url('assets')?>/img/p1.png" alt="">
-									<a class="btns text-uppercase" href="#">view job post</a>
-								</div>
-								<div class="details">
-									<a href="#"><h4>Creative Designer</h4></a>
-									<h6>Los Angeles</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-post d-flex flex-row">
-								<div class="thumb">
-									<img src="<?=base_url('assets')?>/img/p2.png" alt="">
-									<a class="btns text-uppercase" href="#">view job post</a>
-								</div>
-								<div class="details">
-									<a href="#"><h4>Creative Designer</h4></a>
-									<h6>Los Angeles</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-									</p>
-								</div>
-							</div>
-							<div class="single-popular-post d-flex flex-row">
-								<div class="thumb">
-									<img src="<?=base_url('assets')?>/img/p1.png" alt="">
-									<a class="btns text-uppercase" href="#">view job post</a>
-								</div>
-								<div class="details">
-									<a href="#"><h4>Creative Designer</h4></a>
-									<h6>Los Angeles</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-post d-flex flex-row">
-								<div class="thumb">
-									<img src="<?=base_url('assets')?>/img/p2.png" alt="">
-									<a class="btns text-uppercase" href="#">view job post</a>
-								</div>
-								<div class="details">
-									<a href="#"><h4>Creative Designer</h4></a>
-									<h6>Los Angeles</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-post d-flex flex-row">
-								<div class="thumb">
-									<img src="<?=base_url('assets')?>/img/p1.png" alt="">
-									<a class="btns text-uppercase" href="#">view job post</a>
-								</div>
-								<div class="details">
-									<a href="#"><h4>Creative Designer</h4></a>
-									<h6>Los Angeles</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-									</p>
-								</div>
-							</div>	
-							<div class="single-popular-post d-flex flex-row">
-								<div class="thumb">
-									<img src="<?=base_url('assets')?>/img/p2.png" alt="">
-									<a class="btns text-uppercase" href="#">view job post</a>
-								</div>
-								<div class="details">
-									<a href="#"><h4>Creative Designer</h4></a>
-									<h6>Los Angeles</h6>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporinc ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis.
-									</p>
-								</div>
-							</div>																																							
-						</div>
-					</div>
-				</div>	
-			</section>
+
 			<!-- End popular-post Area -->
 			
 			<!-- Start feature-cat Area -->
@@ -202,39 +117,39 @@
 					<div class="row">
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="<?= base_url('index.php/home/searchjobkategori?kategori=Bidang Ekonomi') ?>">
 									<img src="<?=base_url('assets')?>/img/o1.png" alt="">
 								</a>
-								<p>Accounting</p>
+								<p>Ekonomi</p>
 							</div>
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="<?= base_url('index.php/home/searchjobkategori?kategori=Bidang Teknik dan Industry') ?>">
 									<img src="<?=base_url('assets')?>/img/o2.png" alt="">
 								</a>
-								<p>Development</p>
+								<p>Teknik dan Industri</p>
 							</div>
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="<?= base_url('index.php/home/searchjobkategori?kategori=Bidang Teknologi') ?>">
 									<img src="<?=base_url('assets')?>/img/o3.png" alt="">
 								</a>
-								<p>Technology</p>
+								<p>Teknologi</p>
 							</div>
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="<?= base_url('index.php/home/searchjobkategori?kategori=Bidang Seni Sastra') ?>">
 									<img src="<?=base_url('assets')?>/img/o4.png" alt="">
 								</a>
-								<p>Media & News</p>
+								<p>Seni Sastra</p>
 							</div>
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="<?= base_url('index.php/home/searchjobkategori?kategori=Bidang Kesehatan') ?>">
 									<img src="<?=base_url('assets')?>/img/o5.png" alt="">
 								</a>
 								<p>Medical</p>
@@ -242,10 +157,10 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="<?= base_url('index.php/home/searchjobkategori?kategori=Bidang Hukum') ?>">
 									<img src="<?=base_url('assets')?>/img/o6.png" alt="">
 								</a>
-								<p>Goverment</p>
+								<p>Hukum</p>
 							</div>			
 						</div>																											
 					</div>

@@ -1,5 +1,5 @@
 <div class="headProfile w-100 d-flex flex-row animate__animated  animate__fadeIn  align-items-center mb-3" style="background-color: white; border-radius: 30px; padding: 30px;">
-    <img src="<?=base_url('assets/img/') ?><?= $result['profilePicture']?>" style="border-radius: 50%; margin-right: 20px; width: 80px;">
+    <img src="<?=base_url() ?><?php echo $result['profilePicture']?>" style="border-radius: 50%; margin-right: 20px; width: 80px;">
     <div class="captProfile">
         <h4 style="margin: 0px;"><?= $result['nama']?> </h4>
         <h6 style="margin: 0px; opacity: 0.7;">Company </h6>
