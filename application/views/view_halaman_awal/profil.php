@@ -53,10 +53,10 @@
                         <?php
                         if ($this->session->userdata('email')) { ?>
                             
-                            <?php if (null !== $this->session->userdata('profilePicture')) { ?>
-                                <li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/').$personalInfo['profilePicture'] ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
+                            <?php if (filter_var($personalInfo['profilePicture'], FILTER_VALIDATE_URL)) { ?>
+                                <li class="menu-has-children"><a href=""><img src="<?=$personalInfo['profilePicture'] ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
                                 <?php } else { ?>
-                                <li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?>pp.png" alt="" style="width: 30px;border-radius: 50%;"></a>
+                                <li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?><?=$personalInfo['profilePicture'] ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
                                 <?php } ?>
                                 <ul>
                                     <li><a href="<?= site_url('home/profil') ?>">Profil</a></li>
@@ -66,6 +66,7 @@
                             <?php } else { ?>
                                 <li><a class="ticker-btn" href="<?= site_url('login'); ?>">Login</a></li>
                             <?php } ?>
+                           
                     </ul>
                 </nav><!-- #nav-menu-container -->
             </div>

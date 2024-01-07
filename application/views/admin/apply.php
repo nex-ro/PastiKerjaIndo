@@ -67,8 +67,7 @@
 <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
 
-        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search"
-            aria-describedby="basic-addon2">
+        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
 
         <div class="input-group-append">
             <button class="btn btn-primary" type="button">
@@ -99,39 +98,39 @@
             <tr>
 
                 <?php $no = 1;
-                foreach ($apply as $row): ?>
-                <tr>
-                    <td>
-                        <?php echo $no++; ?>
-                    </td>
-                    <td>
-                        <?php
-                        $applicant = $this->user->getwhere('user', 'id_user', $row->id_pengambil);
-                        if ($applicant !== null) {
-                            echo $applicant->nama;
-                        } else {
-                            echo "User Not Found";
-                        }
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                            $applicationId = $row->id_apply;
-                            $status = $_POST['status'];
-                            $description = $_POST['description'];
-                            $data = array(
-                                'status' => $status,
-                            );
-                            $this->db->where('id_apply', $applicationId);
-                            $this->db->update('apply', $data);
-                            $notificationData = array(
-                                'id_apply' => $applicationId,
-                                'title' => $status,
-                                'desc' => $description
-                            );
-                            $this->db->insert('notif', $notificationData);
-                        }
+                foreach ($apply as $row) : ?>
+            <tr>
+                <td>
+                    <?php echo $no++; ?>
+                </td>
+                <td>
+                    <?php
+                    $applicant = $this->user->getwhere('user', 'id_user', $row->id_pengambil);
+                    if ($applicant !== null) {
+                        echo $applicant->nama;
+                    } else {
+                        echo "User Not Found";
+                    }
+                    ?>
+                </td>
+                <td>
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $applicationId = $row->id_apply;
+                        $status = $_POST['status'];
+                        $description = $_POST['description'];
+                        $data = array(
+                            'status' => $status,
+                        );
+                        $this->db->where('id_apply', $applicationId);
+                        $this->db->update('apply', $data);
+                        $notificationData = array(
+                            'id_apply' => $applicationId,
+                            'title' => $status,
+                            'desc' => $description
+                        );
+                        $this->db->insert('notif', $notificationData);
+
                         if ($status === 'accepted') {
                             $job = $this->user->getwhere('lowongan', 'id_lowongan', $row->id_lowongan);
                             if ($job !== null) {
@@ -141,52 +140,52 @@
                                 $this->db->update('lowongan');
                             }
                         }
-                        ?>
-                        <?php if ($row->status === 'pending'): ?>
-                            <form method="post" action="">
-                                <input type="hidden" name="id_apply" value="<?php echo $row->id_apply; ?>">
-                                <input type="hidden" name="status" value="rejected">
-                                <input type="text" name="description" placeholder="Enter reason for rejection" required>
-                                <button type="submit" class="btn btn-danger" name="reject">Reject</button>
-                            </form>
-                            <form method="post" action="">
-                                <input type="hidden" name="id_apply" value="<?php echo $row->id_apply; ?>">
-                                <input type="hidden" name="status" value="accepted">
-                                <input type="text" name="description" placeholder="Enter reason for acceptance" required>
-                                <button type="submit" class="btn btn-success" name="accept">Accept</button>
-                            </form>
-                        <?php else: ?>
-                            <?php
-                            $job = $this->user->getwhere('lowongan', 'id_lowongan', $row->id_lowongan);
-                            if ($job !== null) {
-                                echo $job->lowongan;
-                            } else {
-                                echo "Job Not Found";
-                            }
-                            ?>
-                        <?php endif; ?>
-                    </td>
-                    <td>
-                        <?php $kat = $this->user->getwhere('lowongan', 'id_lowongan', $row->id_lowongan);
-                        if ($kat !== null) {
-                            echo $kat->kategori;
+                    }
+                    ?>
+                    <?php if ($row->status === 'pending') : ?>
+                        <form method="post" action="">
+                            <input type="hidden" name="id_apply" value="<?php echo $row->id_apply; ?>">
+                            <input type="hidden" name="status" value="rejected">
+                            <input type="text" name="description" placeholder="Enter reason for rejection" required>
+                            <button type="submit" class="btn btn-danger" name="reject">Reject</button>
+                        </form>
+                        <form method="post" action="">
+                            <input type="hidden" name="id_apply" value="<?php echo $row->id_apply; ?>">
+                            <input type="hidden" name="status" value="accepted">
+                            <input type="text" name="description" placeholder="Enter reason for acceptance" required>
+                            <button type="submit" class="btn btn-success" name="accept">Accept</button>
+                        </form>
+                    <?php else : ?>
+                        <?php
+                        $job = $this->user->getwhere('lowongan', 'id_lowongan', $row->id_lowongan);
+                        if ($job !== null) {
+                            echo $job->lowongan;
                         } else {
-                            echo "No Category";
-                        } ?>
-                    </td>
-                    <td>
-                        <?php echo $row->status; ?>
-                    </td>
-                    <td>
-                        <button class="btn btn-info" data-toggle="modal"
-                            data-target="#viewCVModal_<?php echo $row->id_apply; ?>">
-                            View CV
-                        </button>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-
+                            echo "Job Not Found";
+                        }
+                        ?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php $kat = $this->user->getwhere('lowongan', 'id_lowongan', $row->id_lowongan);
+                    if ($kat !== null) {
+                        echo $kat->kategori;
+                    } else {
+                        echo "No Category";
+                    } ?>
+                </td>
+                <td>
+                    <?php echo $row->status; ?>
+                </td>
+                <td>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#viewCVModal_<?php echo $row->id_apply; ?>">
+                        View CV
+                    </button>
+                </td>
             </tr>
+        <?php endforeach; ?>
+
+        </tr>
         <tfoot>
             <tr>
                 <th>#</th>
@@ -201,9 +200,8 @@
         </tfoot>
         </tbody>
     </table>
-    <?php foreach ($apply as $row): ?>
-        <div class="modal fade" id="viewCVModal_<?php echo $row->id_apply; ?>" tabindex="-1" role="dialog"
-            aria-labelledby="viewCVModalLabel" aria-hidden="true">
+    <?php foreach ($apply as $row) : ?>
+        <div class="modal fade" id="viewCVModal_<?php echo $row->id_apply; ?>" tabindex="-1" role="dialog" aria-labelledby="viewCVModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

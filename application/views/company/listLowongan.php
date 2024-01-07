@@ -146,11 +146,13 @@
 
     <tfoot>
       <tr>
-        <th>#</th>
-        <th>Nama Pemberi</th>
-        <th>Pekerjaan</th>
-        <th>Kategori</th>
+      <th>#</th>
+        <th>Company</th>
+        <th>Job title</th>
+        <th>category</th>
         <th>lokasi</th>
+        <th>status</th>
+        <th>applier</th>
         <th>aksi</th>
       </tr>
     </tfoot>

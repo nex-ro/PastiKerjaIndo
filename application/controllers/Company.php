@@ -129,7 +129,7 @@ class Company extends RestController
       if (move_uploaded_file($_FILES["pp"]["tmp_name"], $targetFile)) {
         // File berhasil diunggah, tambahkan logika Anda di sini
         $data = [
-          'profilePicture' => $targetFile, // Simpan path file ke dalam database
+          'profilePicture' => basename($_FILES["pp"]["name"]),// Simpan path file ke dalam database
           'nama' => htmlspecialchars($this->input->post('nama', true)),
           'lokasi' => htmlspecialchars($this->input->post('lokasi', true)),
           'noHp' => htmlspecialchars($this->input->post('noHp', true)),
