@@ -44,15 +44,10 @@ class Auth extends RestController
         $google_client = new Google_Client();
 
         $google_client->setClientId('223694650381-5m3v5m0kcp81nsuln02kljp0sfvknp45.apps.googleusercontent.com'); //Define your ClientID
-
         $google_client->setClientSecret('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'); //Define your Client Secret Key
-
         $google_client->setRedirectUri('http://localhost/pasti_kerja_indonesia/index.php/auth/Auth/loginApi'); //Define your Redirect Uri
-
         $google_client->addScope('email');
-
         $google_client->addScope('profile');
-
         if (isset($_GET["code"])) {
             $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
             if (!isset($token["error"])) {
@@ -95,7 +90,6 @@ class Auth extends RestController
     }
 
     function register_get()
-
     {
         if ($this->session->userdata('email')) {
             redirect('home');
@@ -130,10 +124,10 @@ class Auth extends RestController
                 'noHp' => htmlspecialchars($this->input->post('noHP', true)),
                 'pass' => password_hash($this->input->post('pass'), PASSWORD_DEFAULT),
                 'profilePicture' => base_url('assets/img/').'pp.jpg',
-                'role' => "user",
+                'role' =>  $this->input->post('role'),
                 'lokasi'=>htmlspecialchars($this->input->post('lokasi', true)),
-                'jenis_kelamin' => htmlspecialchars($this->input->post('gender', true))
             ];
+            print_r($data);
             $this->user->insert($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun terdaftar, Silahkan Login!</div>');
             redirect('login');
@@ -157,16 +151,22 @@ class Auth extends RestController
                 $data = [
                     'nama' => $user['nama'],
                     'email' => $user['email'],
-                    'role' => "user",
+                    'role' => $user['role'],
                     'id_user' => $user['id_user'],
                 ];
-                $this->session->set_userdata($data);
-                redirect('Home');
-            } else {
+                if($user['role']=='user'){
+                    $this->session->set_userdata($data);
+                    redirect('Home');
+                }
+                else if($user['role']=='company'){
+                    $this->session->set_userdata($data);
+                    redirect('company');
+                }
+            }else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong Password!</div>');
                 redirect('login');
             }
-        } else {
+        }else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Email Not Found </div>');
             redirect("login");
         }

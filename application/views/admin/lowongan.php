@@ -86,6 +86,7 @@
         <th>Kategori</th>
         <th>Type</th>
         <th>lokasi</th>
+
         <th>aksi</th>
       </tr>
     </thead>
@@ -95,6 +96,7 @@
         foreach ($lowongan as $row) {
           $no = 0;
           $no++;
+
           $id_user = '';
           $this->load->model('User_model','user');
           
@@ -106,12 +108,14 @@
         } else {
             echo "No user found"; // Or handle empty case accordingly
         }
+
         ?>
           <td><?php echo $no ;?></td>
           <td><?php echo $pemberi->nama ?></td>
           <td><?php echo $row->lowongan ?></td>
           <td><?php echo $row->status ?></td>
           <td><?php echo $row->kategori ?></td>
+
           <td><?php echo $row->type?></td>
           <td><?php echo $row->lokasi ?></td>
           <td><a href=""><button type='button' class='btn btn-danger'>Hapus</button></a></td>

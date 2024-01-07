@@ -35,6 +35,11 @@ class User_model extends CI_Model
     $this->db->update($this->table, $data, $where);
     return $this->db->affected_rows();
   }
+  public function updateGlobal($table, $where,$on, $data )
+  {
+    $this->db->where($on, $where);
+    $this->db->update($table, $data);
+  }
   public function insert($data)
   {
     $this->db->insert($this->table, $data);
@@ -89,20 +94,41 @@ class User_model extends CI_Model
     }
     $querry = $this->db->get($table);
 
-
     return $querry->result();
   }
 
-  public function getwhere($table, $where, $id = null){
+  public function getWhereJoin($table, $tableJoin, $on, $where)
+  {
+    $this->db->select('*');
+    $this->db->from($table);
+    $this->db->join($tableJoin, $table . '.' . $on . '=' . $tableJoin . '.' . $on, ' left');
+    $this->db->where($table . '.' . $on, $where);
+
+    $query = $this->db->get();
+    $result = $query->row_array();
+    return $result;
+  }
+
+  public function getwhere($table, $where, $id = null)
+  {
     if ($id !== null) {
-        $this->db->where($where, $id);
+      $this->db->where($where, $id);
     } else {
-        $this->db->where($where);
+      $this->db->where($where);
     }
     $query = $this->db->get($table);
     return $query->row(); // Use row() instead of result()
-}
+  }
+  public function getWhereAll($table, $where, $id)
+  {
+    $this->db->select('*');
+    $this->db->from($table);
+    $this->db->where($where, $id);
 
+    $query = $this->db->get();
+    $result = $query->result();
+    return $result;
+  }
   public function selectAll($table)
   {
     $query = $this->db->get($table);
