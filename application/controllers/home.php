@@ -16,6 +16,8 @@ class home extends RestController
 	public function index_get()
 	{
 		$data['lowongan'] = $this->user->selectAll('lowongan');
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$this->load->view('layout/header',$data);
 		$this->load->view('view_halaman_awal/index', $data);
@@ -23,6 +25,8 @@ class home extends RestController
 	}
 	public function job_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$this->db->reset_query();
@@ -36,6 +40,8 @@ class home extends RestController
 	}
 	public function searchjob_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$data['search'] = $this->user->search_lowongan('lowongan', $this->input->post('cari', true), $this->input->post('lokasi', true), $this->input->post('kategori', true));
@@ -49,6 +55,8 @@ class home extends RestController
 	}
 	public function searchjoblokasi_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$lokasi = $_GET['lokasi'];
@@ -63,6 +71,8 @@ class home extends RestController
 	}
 	public function searchjobtype_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$type = $_GET['type'];
@@ -77,6 +87,8 @@ class home extends RestController
 	}
 	public function searchjobkategori_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$kategori = $_GET['kategori'];
@@ -92,6 +104,8 @@ class home extends RestController
 
 	public function searchjobcompany_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['lowongan'] = $this->user->selectAll('lowongan');
 		$id_user = $_GET['id'];
@@ -106,6 +120,8 @@ class home extends RestController
 	}
 	public function searchprofilecompany_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['company'] = $this->user->search_company('user', $this->input->post('search', true), '');
 		$this->load->view('layout/header',$data);
@@ -114,6 +130,8 @@ class home extends RestController
 	}
 	public function company_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['company'] = $this->user->selectcompany('user');
 		$this->load->view('layout/header',$data);
@@ -122,6 +140,8 @@ class home extends RestController
 	}
 	public function news_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		// $this->load->view('welcome_message');
 		$this->load->view('layout/header',$data);
@@ -130,6 +150,8 @@ class home extends RestController
 	}
 	public function newsOne_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		// $this->load->view('welcome_message');
 		$this->load->view('layout/header',$data);
@@ -138,6 +160,8 @@ class home extends RestController
 	}
 	public function newsDetail_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		// $this->load->view('welcome_message');
 		$this->load->view('layout/header',$data);
@@ -146,6 +170,8 @@ class home extends RestController
 	}
 	public function about_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		// $this->load->view('welcome_message');
 		$this->load->view('layout/header',$data);
@@ -155,6 +181,8 @@ class home extends RestController
 
 	function buatlowongan_get()
 	{
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		if (!$this->session->userdata('email')) {
 			redirect('home');
@@ -189,6 +217,8 @@ class home extends RestController
 	}
 	public function profil_get()
 	{	
+		$data['notifcount'] = $this->user->countnotif($this->session->userdata('id_user'));
+		$data['notif'] = $this->user->usernotif($this->session->userdata('id_user'));
 		$data['personalInfo'] = $this->db->get_where('user', array('id_user' => $this->session->userdata('id_user')))->row_array();
 		$data['carrier'] = $this->user->getWhereAll('experience', 'id_user', $this->session->userdata('id_user'));
 		$data['pendidikan'] = $this->user->getWhereAll('pendidikan', 'id_user', $this->session->userdata('id_user'));

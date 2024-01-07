@@ -14,7 +14,7 @@
 <div class="container-md p-2">
   <div class="d-flex justify-content-between">
     <h1 class="h3 mb-0 text-gray-800">Data Lowongan</h1>
-    <a href="<?=site_url('company/buatLowongan')?>"><button class='btn btn-primary mb-3 mt-3 d-flex justify-content-end'>Tambah Data</button></a>
+    <a href="<?= site_url('company/buatLowongan') ?>"><button class='btn btn-primary mb-3 mt-3 d-flex justify-content-end'>Tambah Data</button></a>
   </div>
   <table id="example" class="table table-striped" style="width:100%">
     <thead>
@@ -45,9 +45,9 @@
           <td><?php echo $row->status ?></td>
           <td>1</td>
           <td>
-            <a href="<?=site_url('Company/applier')?>?id=<?=$row->id_lowongan?>"><button type='button' class='btn btn-success'>Check Applier</button></a>
+            <a href="<?= site_url('Company/applier') ?>?id=<?= $row->id_lowongan ?>"><button type='button' class='btn btn-success'>Check Applier</button></a>
             <a><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter<?= $row->id_lowongan ?>">Edit</button></a>
-            <a href="<?=site_url('Company/delateLowongan')?>?id=<?=$row->id_lowongan?>"><button type='button' class='btn btn-danger'>Hapus</button></a>
+            <a href="<?= site_url('Company/delateLowongan') ?>?id=<?= $row->id_lowongan ?>"><button type='button' class='btn btn-danger'>Hapus</button></a>
           </td>
         </tr>
 
@@ -84,22 +84,21 @@
                     <div class="">
                       <select class="form-control" id="kategori" name="kategori" require>
                         <option selected value="<?= $row->kategori ?>"><?= $row->kategori ?></option>
-                        <option value="Education">Education</option>
-                        <option value="Health ">Health </option>
-                        <option value="Business,management and administration">Business, management and administration</option>
-                        <option value="Law enforcement">Law enforcement </option>
-                        <option value="Architecture and Engineering ">Architecture and Engineering </option>
-                        <option value="Arts , culuture and entertainment">Arts , culuture and entertainment </option>
-                        <option value="Community and social services">Community and social services</option>
-                        <option value="Science and technology">Science and technology </option>
-                        <option value=" Farming, fishing and forestry">Farming, fishing and forestry</option>
+                        <option value="Bidang Teknologi">Bidang Teknologi</option>
+                        <option value="Bidang Pendidikan">Bidang Pendidikan</option>
+                        <option value="Bidang Hukum">Bidang Hukum</option>
+                        <option value="Bidang Ekonomi">Bidang Ekonomi</option>
+                        <option value="Bidang Seni Sastra">Bidang Seni Sastra </option>
+                        <option value="Bidang Teknik dan Industry">Bidang Teknik dan Industry </option>
+                        <option value="Bidang Kesehatan">Bidang Kesehatan</option>
+                        <option value="Wirausaha">Wirausaha</option>
                       </select>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-6">
                       <select class="form-control" id="type" name="type" require>
-                        <option selected value="<?=$row->type?>"> <?= $row->type ?></option>
+                        <option selected value="<?= $row->type ?>"> <?= $row->type ?></option>
                         <option value="Fulltime">Full Time</option>
                         <option value="Part time">Part Time</option>
                         <option value="Intern">Intern</option>
@@ -146,7 +145,7 @@
 
     <tfoot>
       <tr>
-      <th>#</th>
+        <th>#</th>
         <th>Company</th>
         <th>Job title</th>
         <th>category</th>

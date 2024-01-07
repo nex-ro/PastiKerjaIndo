@@ -68,7 +68,9 @@
 							<!-- Nav Item - Alerts -->
 							<li class="nav-item dropdown no-arrow mx-1">
 								<a style="display: flex;flex-direction: column; text-align: center;" class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<span class="badge badge-danger badge-counter">3+</span>
+									<span class="badge badge-danger badge-counter"><?php if ($notifcount != 0) {
+																						echo $notifcount;
+																					} ?></span>
 									<i style="font-size: 20px;" class='bx bxs-bell'></i> <!-- Counter - Alerts -->
 								</a>
 								<!-- Dropdown - Alerts -->
@@ -77,36 +79,44 @@
 										Notification
 									</h6>
 									<a class="dropdown-item d-flex align-items-center" href="#" style="color: black;">
-										<div>
-											<div class="small text-gray-500" style="margin: 0px;">07 January 2024</div>
-											<span class="font-weight-bold">Welcome to Pasti Kerja Indonesia</span>
-										</div>
+
+										<?php foreach ($notif as $row) {
+
+										?>
+											<div>
+												<span class="font-weight-bold"><?php echo $row->notifikasi ?></span>
+												<div class="small text-gray-500" style="margin: 0px;"><?php echo $row->created ?></div>
+
+											</div>
+
+										<?php } ?>
+
 									</a>
-									
+
 								</div>
 							</li>
 
 
 
-							<?php if (filter_var($this->session->userdata('profilePicture'), FILTER_VALIDATE_URL)) {
-							?> <li class="menu-has-children"><a href=""><img src="<?= $this->session->userdata('profilePicture') ?>" alt="" style="width: 30px;border-radius: 50%; border: 2px solid white;"></a>
-								<?php
-							} else {
-								?>
-								<li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?><?=$this->session->userdata('profilePicture') ?>" alt="" style="width: 30px;border-radius: 50%;border: 2px solid white;"></a>
-								<?php
-							} ?>
+							<?php
+							if ($this->session->userdata('email')) { ?>
 
-								<ul>
-									<li><a href="<?= site_url('home/profil') ?>">Profil</a></li>
-									<li><a href="<?= site_url('auth/Auth/logout') ?>" style="color: red;">Logout</a></li>
-								</ul>
-								</li>
-							<?php } else { ?>
-								<li><a class="ticker-btn" href="<?= site_url('login'); ?>">Login</a></li>
-							<?php } ?>
-
-
+								<?php if (filter_var($personalInfo['profilePicture'], FILTER_VALIDATE_URL)) { ?>
+									<li class="menu-has-children"><a href=""><img src="<?= $personalInfo['profilePicture'] ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
+									<?php } else { ?>
+									<li class="menu-has-children"><a href=""><img src="<?= base_url('assets/img/') ?><?= $personalInfo['profilePicture'] ?>" alt="" style="width: 30px;border-radius: 50%;"></a>
+									<?php } ?>
+									<ul>
+										<li><a href="<?= site_url('home/profil') ?>">Profil</a></li>
+										<li><a href="<?= site_url('auth/Auth/logout') ?>" style="color: red;">Logout</a></li>
+									</ul>
+									</li>
+								<?php } else { ?>
+									
+							<?php }
+						} else {
+							?><li><a class="ticker-btn" href="<?= site_url('login'); ?>">Login</a></li>
+						<?php }?>
 					</ul>
 				</nav><!-- #nav-menu-container -->
 			</div>

@@ -204,6 +204,28 @@ class User_model extends CI_Model
     $result = $query->result();
     return $result;
   }
+  public function usernotif($n)
+  {
+    $this->db->where('id_user', $n);
+    $this->db->order_by('created', 'ASC');
+    $this->db->limit(5);
+    $query = $this->db->get('notifikasi');
+    return $query->result();
+  }
+  public function countnotif($id_user) {
+    $this->db->select('COUNT(*) as total_notif');
+    $this->db->where('id_user', $id_user);
+    $this->db->order_by('created', 'ASC');
+    $this->db->limit(5);
+    $query = $this->db->get('notifikasi');
+    $result = $query->row();
+    
+    if ($result) {
+        return $result->total_notif;
+    }
+    
+    return 0; // Jika tidak ada notifikasi
+}
 
 }
 

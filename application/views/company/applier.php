@@ -44,10 +44,14 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="<?=site_url()?>" method="post">
+                                <form action="<?=site_url("Company/notif")?>" method="post">
                                     <div class="modal-body">
+                                    <input type="hidden" name="idambil" value="<?php echo $infoPelamar['id_user']; ?>">
+                                    <input type="hidden" name="low" value="<?php echo $row->id_lowongan; ?>">
+                                    <input type="hidden" name="pel" value="<?php echo $row->id_apply; ?>">
                                         <div class="form-group">
                                             <input type="text" name="nama" class="form-control form-control-user" id="exampleInputEmail" placeholder="requiement" value="<?= $infoPelamar['nama'] ?>">
+
                                         </div>
                                         <div class="form-group">
                                             <select class="form-control" id="status" name="status">

@@ -59,12 +59,14 @@
                 </ul>
                 
                 <?php
-               
-    	foreach ($search as $row) {
-			    ?>
-               <div class="single-post d-flex flex-row">
-						<div class="thumb">
-							<img src="<?= base_url('assets/profilepicture') ?>" alt="Profile Picture">
+
+				foreach ($search as $row) {
+					$datalowongan = $this->db->get_where('lowongan', array('id_lowongan' => $row->id_lowongan))->row_array();
+					$dataPemberi = $this->db->get_where('user', array('id_user' => $datalowongan['id_user']))->row_array();
+				?>
+					<div class="single-post d-flex flex-row">
+						<div class="thumb" style="margin-right: 20px;">
+							<img src="<?= base_url('assets/img/') ?><?= $dataPemberi['profilePicture'] ?>" alt="Company Picture" style="width: 100px; bor">
 
 						</div>
 						<div class="details">
@@ -75,16 +77,19 @@
 									</a>
 									<h6><?php echo $row->lokasi ?></h6>
 								</div>
-								<ul class="btns">
 
-									<li><a href="<?= base_url('index.php/home/searchjobkategori?kategori=' . $row->kategori) ?>"> <?php echo $row->kategori ?></a></li>
-									<li><a href="#">Apply</a></li>
-								</ul>
+
 							</div>
 
 							<h5>Type : <?php echo $row->type ?></h5>
 							<p class="address"><span class="lnr lnr-map"></span> Syarat : <?php echo $row->requirement ?></p>
-							<p class="address"><span class="lnr lnr-database"><?php echo $row->salary ?></span></p>
+							<p class="address"><span class="lnr lnr-database"></span><?php echo $row->salary ?> </p>
+						</div>
+						<div class="">
+							<ul class="btns">
+								<li><a href="#"> <?php echo $row->kategori ?></a></li>
+								<li data-toggle="modal" data-target="#applyModal_<?php echo $row->id_lowongan; ?>"><a href="#">Apply</a></li>
+							</ul>
 						</div>
 					</div>
 
@@ -94,7 +99,6 @@
 				}
 
 				?>
-
 
                 <a class="text-uppercase loadmore-btn mx-auto d-block" href="category.html">Load More job Posts</a>
 
