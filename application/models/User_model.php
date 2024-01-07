@@ -96,6 +96,13 @@ class User_model extends CI_Model
 
     return $querry->result();
   }
+  function search_lowongan_company($table, $company)
+  {
+    $this->db->where('id_user',$company);
+    $querry = $this->db->get($table);
+
+    return $querry->result();
+  }
 
   public function getWhereJoin($table, $tableJoin, $on, $where)
   {
@@ -133,6 +140,17 @@ class User_model extends CI_Model
   {
     $query = $this->db->get($table);
 
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return array();
+    }
+  }
+  public function selectcompany($table)
+  {
+    $this->db->where('role','company');
+    $query = $this->db->get($table);
+    
     if ($query->num_rows() > 0) {
       return $query->result();
     } else {

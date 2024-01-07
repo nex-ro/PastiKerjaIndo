@@ -57,7 +57,7 @@
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="<?= base_url() ?>">Home</a></li>
-						<li><a href="<?= base_url('index.php/job') ?>">Job Search</a></li>
+						<li><a href="<?= base_url('index.php/job') ?>">Job</a></li>
 						<li><a href="<?= base_url('index.php/home/company') ?>">Company</a></li>
 						<li><a href="<?= base_url('index.php/home/news') ?>">News</a></li>
 						<li><a href="<?= base_url('index.php/home/about') ?>">About us</a></li>
