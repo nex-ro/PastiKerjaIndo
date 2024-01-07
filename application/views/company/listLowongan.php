@@ -45,7 +45,7 @@
           <td><?php echo $row->status ?></td>
           <td>1</td>
           <td>
-            <a href=""><button type='button' class='btn btn-success'>Check Applier</button></a>
+            <a href="<?=site_url('Company/applier')?>?id=<?=$row->id_lowongan?>"><button type='button' class='btn btn-success'>Check Applier</button></a>
             <a><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter<?= $row->id_lowongan ?>">Edit</button></a>
             <a href="<?=site_url('Company/delateLowongan')?>?id=<?=$row->id_lowongan?>"><button type='button' class='btn btn-danger'>Hapus</button></a>
           </td>
@@ -55,7 +55,7 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -96,8 +96,6 @@
                       </select>
                     </div>
                   </div>
-
-
                   <div class="form-group row">
                     <div class="col-sm-6">
                       <select class="form-control" id="type" name="type" require>
@@ -105,7 +103,6 @@
                         <option value="Fulltime">Full Time</option>
                         <option value="Part time">Part Time</option>
                         <option value="Intern">Intern</option>
-
                       </select>
                     </div>
                     <div class="col-sm-6">
