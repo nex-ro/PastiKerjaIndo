@@ -224,28 +224,4 @@ class home extends RestController
 			}
 		}
 	}
-	public function updateApplicationStatus()
-	{
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$applicationId = $this->input->post('id_apply');
-			$status = $this->input->post('status');
-			$description = $this->input->post('description');
-			$data = array(
-				'status' => $status,
-				'description' => $description
-			);
-			$this->db->where('id_apply', $applicationId);
-			$this->db->update('apply', $data);
-				$notifdata = array(
-				'id_apply' => $applicationId,
-				'status' => $status,
-				'description' => $description
-			);
-			$this->db->insert('notif', $notifdata);
-	
-			echo "Application status updated successfully.";
-		} else {
-			show_404(); // Invalid request
-		}
-	}
 }
