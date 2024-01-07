@@ -98,8 +98,6 @@
           $no++;
 
           $id_user = '';
-          $this->load->model('User_model','user');
-          
         ?>
         <?php 
         $pemberi = $this->user->getwhere('user', 'id_user', $row->id_user);

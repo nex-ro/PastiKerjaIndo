@@ -149,16 +149,7 @@ class User_model extends CI_Model
       return array();
     }
   }
-  public function getWhereAll($table, $where, $id)
-  {
-    $this->db->select('*');
-    $this->db->from($table);
-    $this->db->where($where,$id);
-
-    $query = $this->db->get();
-    $result = $query->result();
-    return $result;
-  }
+ 
   public function getWdistinct($table,$see)
   {
     $this->db->distinct($see);

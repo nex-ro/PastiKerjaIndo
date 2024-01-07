@@ -64,7 +64,7 @@
 
 						<?php
 						if ($this->session->userdata('email')) { ?>
-							<li><a href="<?= base_url('index.php/home/buatlowongan') ?>">Buat Lowongan</a></li>
+							
 							<!-- Nav Item - Alerts -->
 							<li class="nav-item dropdown no-arrow mx-1">
 								<a style="display: flex;flex-direction: column; text-align: center;" class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
