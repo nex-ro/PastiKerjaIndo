@@ -87,6 +87,31 @@ class Company extends RestController
     $this->db->update('lowongan', $data);
     redirect(site_url("Company"));
   }
+  public function notif_get()
+  {
+
+    $ids = $this->user->getwhere('user', 'id_user', $this->session->userdata('id_user'));
+    $idl = $this->input->post('low');
+    $lowongan = $this->user->getwhere('lowongan', 'id_lowongan', $idl);
+    if ($this->input->post('status', true) == 'Ditolak'){
+      $notif = "Maaf Kamu Ditolak dari Lamaran Pekarjaan yang kamu ambil Job : " . $lowongan->lowongan;
+      $this->user->hapus_data('id_apply',$this->input->post('pel', true),'apply');
+    }else if ($this->input->post('status', true) == 'closed'){
+      $whatsapp_link = "https://wa.me/{$ids->noHp}";
+      $button = '<a target="_blank" href="' . $whatsapp_link . '" class="btn btn-info btn-sm" style="font-size: 12px;"><i style="font-size: 16px;" class="bx bxs-message"></i> Chat WA</a>';
+
+      $notif = "Kamu Diterima. " . $lowongan->lowongan ." Silahkan Chat : ". $button;
+      $this->user->hapus_data('id_apply',$this->input->post('pel', true),'apply');
+    }else {
+      $notif = "Sedang Diproses " ;
+    }
+    $data = [
+      'id_user' => htmlspecialchars($this->input->post('idambil', true)),
+      'notifikasi' =>  $notif,
+    ];
+    $this->user->insert_global('notifikasi',$data);
+    redirect(site_url("Company"));
+  }
   public function delateLowongan_get()
   {
     $id = $_GET['id'];
