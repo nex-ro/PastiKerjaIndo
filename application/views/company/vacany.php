@@ -1,6 +1,25 @@
 <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4"> -->
 <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
 <!-- </div> -->
+<?php if($this->session->flashdata('message')): ?>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "Signed in successfully"
+        });
+    </script>
+<?php endif; ?>
 <div class="container-md p-2">
     <div class="d-flex justify-content-center">
         <h1 class="h3 mb-0 text-gray-800">Make A new Vacany</h1>
