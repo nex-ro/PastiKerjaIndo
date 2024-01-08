@@ -40,8 +40,9 @@
             if (count($pelamar) <= 0) {
                 echo "<td colspan='8' style='text-align:center;'>No Applier</td>";
             } else {
+                $no = 0;
                 foreach ($pelamar as $row) {
-                    $no = 0;
+                    
                     $no++;
                     $infoPelamar = $this->db->get_where('user', array('id_user' => $row->id_pengambil))->row_array();;
             ?>
